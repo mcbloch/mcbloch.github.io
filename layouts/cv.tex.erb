@@ -1,0 +1,165 @@
+%%% LaTeX Template: Designer's CV
+%%%
+%%% Source: http://www.howtotex.com/
+%%% Feel free to distribute this template, but please keep the referal to HowToTeX.com.
+%%% Date: March 2012
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document properties and packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,12pt,final]{memoir}
+
+% misc
+\renewcommand{\familydefault}{bch}	% font
+\pagestyle{empty}					% no pagenumbering
+\setlength{\parindent}{0pt}			% no paragraph indentation
+
+
+% required packages (add your own)
+\usepackage{flowfram}										% column layout
+\usepackage[top=2cm,left=2cm,right=2cm,bottom=2cm]{geometry}% margins
+\usepackage{graphicx}										% figures
+\usepackage{url}											% URLs
+\usepackage[usenames,dvipsnames]{xcolor}					% color
+\usepackage{multicol}										% columns env.
+	\setlength{\multicolsep}{0pt}
+\usepackage{paralist}										% compact lists
+\usepackage{tikz}
+\usepackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Create column layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% define length commands
+\setlength{\vcolumnsep}{\baselineskip}
+\setlength{\columnsep}{\vcolumnsep}
+
+% frame setup (flowfram package)
+% left frame
+\newflowframe{0.2\textwidth}{\textheight}{0pt}{0pt}[left]
+	\newlength{\LeftMainSep}
+	\setlength{\LeftMainSep}{0.2\textwidth}
+	\addtolength{\LeftMainSep}{1\columnsep}
+
+% small static frame for the vertical line
+\newstaticframe{1.5pt}{\textheight}{\LeftMainSep}{0pt}
+
+% content of the static frame
+\begin{staticcontents}{1}
+\hfill
+\tikz{%
+	\draw[loosely dotted,color=RoyalBlue,line width=1.5pt,yshift=0]
+	(0,0) -- (0,\textheight);}%
+\hfill\mbox{}
+\end{staticcontents}
+
+% right frame
+\addtolength{\LeftMainSep}{1.5pt}
+\addtolength{\LeftMainSep}{1\columnsep}
+\newflowframe{0.7\textwidth}{\textheight}{\LeftMainSep}{0pt}[main01]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% define macros (for convience)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Sep}{\vspace{1.5em}}
+\newcommand{\SmallSep}{\vspace{0.5em}}
+
+\newenvironment{AboutMe}
+	{\ignorespaces\textbf{\color{RoyalBlue} About me}}
+	{\Sep\ignorespacesafterend}
+
+\newcommand{\CVSection}[1]
+	{\Large\textbf{#1}\par
+	\SmallSep\normalsize\normalfont}
+
+\newcommand{\CVItem}[1]
+	{\textbf{\color{RoyalBlue} #1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Left frame
+%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+	\hfill
+	\includegraphics[width=0.8\columnwidth]{profile.jpg}
+	\vspace{-7cm}
+\end{figure}
+
+\begin{flushright}\small
+	<%= item[:firstName] + " " + item[:lastName]%>\\
+	 \href{mailto:<%= item[:email] %>}{<%= item[:email].gsub("@", "@\\\\ ") %>}  \\
+	<%= item[:phone] %>
+\end{flushright}\normalsize
+\framebreak
+
+
+% Right frame
+%%%%%%%%%%%%%%%%%%%%
+\Huge\bfseries {\color{RoyalBlue} <%= item[:firstName] + " " + item[:lastName] %>} \\
+\Large\bfseries {\color{Black} Curriculum Vitae} \\
+\normalsize\normalfont
+
+% About me
+% \begin{AboutMe}
+% Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel bibendum metus. Proin rutrum pharetra molestie. Cras sollicitudin nulla nec leo lobortis in tristique purus pretium. Ut eu felis nulla. Pellentesque condimentum justo ut ligula feugiat nec facilisis tellus ultricies. Nullam sit amet dictum ipsum. Sed lacus neque, hendrerit eu rhoncus nec, pellentesque vitae sem.
+% \end{AboutMe}
+
+\CVSection{Schoolse Opleiding}
+  <% item[:education].each do |education| %>
+    \CVItem {<%= education[:school] %>, <%= education[:status] + (if education[:finished] then " (" + education[:finished].to_s + ")" else "" end)%>}\\
+      <%= education[:direction] %>
+    \SmallSep
+  <% end %>
+\Sep
+
+\CVSection{Niet-Schoolse Opleiding}
+	  <% item[:otherEducation].each do |otherEducation| %>
+			\CVItem {<%= otherEducation[:type] %>} \hfill
+				\scriptsize
+					{<%= otherEducation[:organisation].tr(" ", "~") %>}\\
+				\normalsize
+				<%= otherEducation[:description] %>
+			\SmallSep
+	  <% end %>
+\Sep
+
+\CVSection{Talen}
+  \begin{compactitem}[\color{RoyalBlue}$\circ$]
+    <% item[:languages].each do |language| %>
+      \item {<%= language[:language] %>}: {<%= language[:quality] %>}
+    <% end %>
+  \end{compactitem}
+\Sep
+
+% Skills
+\CVSection{Softwarekennis}
+  \CVItem{Programmeertalen}
+    \begin{compactitem}[\color{RoyalBlue}$\circ$]
+        <% item[:programmingLanguages].each do |programmingLanguage| %>
+          \item {<%= programmingLanguage[:quality] %>}: {<%= programmingLanguage[:languages] * ", " %>}
+        <% end %>
+    \end{compactitem}
+	\SmallSep
+
+	\CVItem{Frameworks}
+		\begin{compactitem}[\color{RoyalBlue}$\circ$]
+			<% item[:frameworks].each do |framework| %>
+				\item {<%= framework[:quality] %>}: {<%= framework[:frameworks] * ", " %>}
+			<% end %>
+		\end{compactitem}
+	\Sep
+
+\CVSection{Andere}
+	\begin{compactitem}[\color{RoyalBlue}$\circ$]
+		<% item[:other].each do |other| %>
+			\item {<%= other[:year] + ": " + other[:type] %>}
+		<% end %>
+	\end{compactitem}
+
+\end{document}

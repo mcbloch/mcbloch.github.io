@@ -1,0 +1,64 @@
+\documentclass[fontsize=11pt, a4paper]{tccv}
+\usepackage[dutch]{babel}
+
+\begin{document}
+
+\part{<%= item[:firstName] + " " + item[:lastName]%>}
+
+\section{Opleiding}
+
+\begin{yearlist}
+
+<% item[:education].each do |education| %>
+  \item {<%= education[:status] + (if education[:finished] then " (" + education[:finished].to_s + ")" else "" end)%>}
+        {<%= education[:direction] %>}
+        {<%= education[:school] %>}
+<% end %>
+
+\end{yearlist}
+
+\section{Talen}
+
+\begin{factlist}
+  <% item[:languages].each do |language| %>
+    \item {<%= language[:language] %>} {<%= language[:quality] %>}
+  <% end %>
+\end{factlist}
+
+\section{Softwarekennis}
+
+\subsection{Programmeertalen}
+\begin{factlist}
+  <% item[:programmingLanguages].each do |programmingLanguage| %>
+    \item {<%= programmingLanguage[:quality] %>} {<%= programmingLanguage[:languages] * ", " %>}
+  <% end %>
+\end{factlist}
+
+\subsection{Frameworks}
+\begin{factlist}
+  <% item[:frameworks].each do |framework| %>
+    \item {<%= framework[:quality] %>} {<%= framework[:frameworks] * ", " %>}
+  <% end %>
+\end{factlist}
+
+\section{Hobbies}
+\begin{itemize}
+  <% item[:hobbies].each do |hobby| %>
+    \item {<%= hobby[:type] %>} bij {<%= hobby[:organisation] %>}
+  <% end %>
+\end{itemize}
+
+\section{Overige}
+\begin{factlist}
+  <% item[:other].each do |other| %>
+    \item {<%= other[:year] %>} {<%= other[:type] %>}
+  <% end %>
+\end{factlist}
+
+\newpage
+\personal
+    {<%= item[:address]*"\\newline" %>}
+    {<%= item[:phone] %>}
+    {<%= item[:email] %>}
+
+\end{document}

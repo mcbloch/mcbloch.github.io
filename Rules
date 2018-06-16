@@ -1,0 +1,54 @@
+#!/usr/bin/env ruby
+require 'byebug'
+require 'nanoc/latexmk'
+
+compile '/cv.md' do
+  filter :kramdown
+  layout '/cv.slim'
+  layout '/default.slim'
+end
+
+compile '/**/cv.md', rep: :pdf do
+  layout '/cv.tex.erb'
+  filter :latexmk, engine: :xelatex
+  write ext: 'pdf'
+end
+
+compile '/**/*.md' do
+  filter :kramdown
+  layout '/default.slim'
+end
+
+compile '/**/*.slim' do
+  filter :slim
+  layout '/default.slim'
+end
+
+# Stylesheets
+compile '/assets/*.scss' do
+  filter :sass, syntax: :scss, style: :compressed
+  filter :autoprefixer
+  write item.identifier.without_ext.to_s.sub('/assets', '/css') + '.css'
+end
+
+# Simplistic URL's
+route '/**/*.{md,slim}' do
+  if item.identifier =~ '/index.*'
+    '/index.html'
+  else
+    item.identifier.without_ext + '/index.html'
+  end
+end
+
+# Move asset subfolders and files to root folder
+route '/assets/**/*' do
+  item.identifier.to_s.sub('/assets', '')
+end
+
+# Let non-specified stuff simply pass trough
+passthrough '/**/*'
+
+# Layouts
+layout '/**/*.slim', :slim
+layout '/**/*.erb', :erb
+layout '/**/*.cls', :cls
