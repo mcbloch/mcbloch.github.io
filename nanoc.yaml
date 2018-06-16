@@ -91,6 +91,5 @@ checks:
 
 deploy:
   default:
-    kind: rsync
-    dst:  maertens@maertens.io:/srv/http/maertens.io/rien
-    options: [ '-glpPrtvz', '-e', 'ssh -p 9450', '--delete']
+    kind: git
+    branch: gh-pages
