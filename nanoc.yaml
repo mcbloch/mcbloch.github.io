@@ -88,8 +88,3 @@ checks:
     # E.g.:
     #   exclude_files: ['blog/page']
     exclude_files: []
-
-deploy:
-  default:
-    kind: git
-    branch: gh-pages
