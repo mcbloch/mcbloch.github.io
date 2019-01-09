@@ -43,11 +43,11 @@ programmingLanguages:
       - Haskell
       - Bash
       - SQL
+      - \LaTeX
   - quality: basis
     languages:
       - Lua
       - Ruby
-      - \LaTeX
 frameworks:
   - quality: ervaren
     frameworks:
