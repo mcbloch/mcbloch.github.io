@@ -5,6 +5,7 @@ email: robbevanherck1@gmail.com
 address:
   - Oude Arendonksebaan 85
   - 2470 Retie
+  - België
 phone: +32 494 10 46 72
 education:
   - type: middelbaar onderwijs
@@ -35,28 +36,31 @@ languages:
 programmingLanguages:
   - quality: ervaren
     languages:
+      - Bash
+      - C/C++
+      - Haskell
       - Java
       - Javascript/Typescript
       - Python
   - quality: gemiddeld
     languages:
-      - Haskell
-      - Bash
       - SQL
       - \LaTeX
   - quality: basis
     languages:
       - Lua
       - Ruby
+      - Rust
 frameworks:
   - quality: ervaren
     frameworks:
-      - React/Redux
       - Git
+      - React/Redux
   - quality: gemiddeld
     frameworks:
-      - Vue.js
       - Flask
+      - Pandoc
+      - Vue.js
 other:
   - type: Finalist Be-OI (Belgische informatica-olympiade)
     year: 2015-2017
