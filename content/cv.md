@@ -60,4 +60,6 @@ frameworks:
 other:
   - type: Finalist Be-OI (Belgische informatica-olympiade)
     year: 2015-2017
+  - type: Voorzitter Zeus WPI (Werkgroep Informatica UGent)
+    year: 2018-2019
 ---
