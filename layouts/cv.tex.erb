@@ -142,7 +142,7 @@
   \CVItem{Programmeertalen}
     \begin{compactitem}[\color{RoyalBlue}$\circ$]
         <% item[:programmingLanguages].each do |programmingLanguage| %>
-          \item {<%= programmingLanguage[:quality] %>}: {<%= programmingLanguage[:languages] * ", " %>}
+          \item {<%= programmingLanguage[:quality] %>}: {<%= programmingLanguage[:languages].sort * ", " %>}
         <% end %>
     \end{compactitem}
 	\SmallSep
@@ -150,7 +150,7 @@
 	\CVItem{Frameworks}
 		\begin{compactitem}[\color{RoyalBlue}$\circ$]
 			<% item[:frameworks].each do |framework| %>
-				\item {<%= framework[:quality] %>}: {<%= framework[:frameworks] * ", " %>}
+				\item {<%= framework[:quality] %>}: {<%= framework[:frameworks].sort * ", " %>}
 			<% end %>
 		\end{compactitem}
 	\Sep
