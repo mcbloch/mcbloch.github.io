@@ -18,7 +18,7 @@ education:
     school: UGent
     direction: Informatica
 otherEducation:
-  - type: (Hoofd)Animator in het jeugdwerk
+  - type: Hoofdanimator in het jeugdwerk
     started: 2015
     organisation: Jonge Helden (Crefi vzw)
     description: Verantwoordelijkheid voor een groep kinderen en (als hoofdanimator) een groep animatoren om alles in goede banen te leiden.
