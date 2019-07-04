@@ -23,6 +23,11 @@ compile '/*.html' do
   layout '/default.erb'
 end
 
+compile '/feed.xml.erb' do
+  filter :erb
+  write '/feed.xml'
+end
+
 # Simplify URLs
 route '/**/*.{md,html}' do
   if item.identifier =~ '/index.*'

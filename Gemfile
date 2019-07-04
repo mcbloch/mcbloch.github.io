@@ -23,3 +23,5 @@ group :nanoc do
   gem 'guard-nanoc'
   gem 'guard-livereload'
 end
+
+gem 'builder'
