@@ -1,4 +1,6 @@
 ---
+title: CV
+
 firstName: Robbe
 lastName: Van Herck
 email: robbevanherck1@gmail.com
@@ -67,3 +69,5 @@ other:
   - type: Voorzitter Zeus WPI (Werkgroep Informatica UGent)
     year: 2018-2019
 ---
+
+Nothing here. For pdf version, go [here](/cv.pdf)

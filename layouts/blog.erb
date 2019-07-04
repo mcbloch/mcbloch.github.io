@@ -1,0 +1,8 @@
+<%= yield %>
+<ul>
+<% sorted_articles.each do |post| %>
+  <li>
+    <a href=<%=url_for(post)%>> <%= post[:title] %> </h3>
+  </li>
+<% end %>
+</ul>

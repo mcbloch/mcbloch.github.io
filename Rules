@@ -2,37 +2,29 @@
 require 'byebug'
 require 'nanoc/latexmk'
 
-compile '/cv.md' do
-  filter :kramdown
-  layout '/cv.slim'
-  layout '/default.slim'
-end
-
-compile '/**/cv.md', rep: :pdf do
+compile '/cv.md', rep: :pdf do
   layout '/cv.tex.erb'
   filter :latexmk, engine: :xelatex
   write ext: 'pdf'
 end
 
+compile '/posts/*.md' do
+  layout '/post.erb'
+  layout '/default.erb'
+end
+
 compile '/**/*.md' do
   filter :kramdown
-  layout '/default.slim'
+  layout '/default.erb'
 end
 
-compile '/**/*.slim' do
-  filter :slim
-  layout '/default.slim'
+compile '/*.html' do
+  layout item.identifier.without_ext + '.erb'
+  layout '/default.erb'
 end
 
-# Stylesheets
-compile '/assets/*.scss' do
-  filter :sass, syntax: :scss, style: :compressed
-  filter :autoprefixer
-  write item.identifier.without_ext.to_s.sub('/assets', '/css') + '.css'
-end
-
-# Simplistic URL's
-route '/**/*.{md,slim}' do
+# Simplify URLs
+route '/**/*.{md,html}' do
   if item.identifier =~ '/index.*'
     '/index.html'
   else
@@ -49,6 +41,5 @@ end
 passthrough '/**/*'
 
 # Layouts
-layout '/**/*.slim', :slim
 layout '/**/*.erb', :erb
 layout '/**/*.cls', :cls

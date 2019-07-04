@@ -1,5 +1,9 @@
+mv ./nanoc.yaml nanoc.yaml.development
+cp nanoc.yaml.production nanoc.yaml
 bundle exec nanoc
 cd output
 git add .
 git commit -S -m "Automated commit"
 git push
+cd ..
+cp nanoc.yaml.development nanoc.yaml 
