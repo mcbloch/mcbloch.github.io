@@ -3,7 +3,7 @@ title: CV
 
 firstName: Robbe
 lastName: Van Herck
-email: robbevanherck1@gmail.com
+email: robbe@robbevanherck.be
 address:
   - Oude Arendonksebaan 85
   - 2470 Retie
