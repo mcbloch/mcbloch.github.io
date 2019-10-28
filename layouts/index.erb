@@ -1,6 +1,14 @@
 <%= yield %>
-<h2> Recent blogposts: </h2>
-<% sorted_articles.each do |post| %>
-  <h3> <%=post[:title]%> </h3>
-  <%= post.compiled_content %>
-<% end %>
+<div class="columns">
+  <section class="column section">
+    <h2 class="title is-2"> Welcome! </h2>
+    Here be some info about me. Soon (tm)
+  </section>
+  <section class="column section">
+    <h2 class="title is-2"> Recent blogposts: </h2>
+    <% sorted_articles.each do |post| %>
+      <h3 class="title is-3"><%=post[:title]%> </h3>
+      <%= post.compiled_content %>
+    <% end %>
+  </section>
+</div>

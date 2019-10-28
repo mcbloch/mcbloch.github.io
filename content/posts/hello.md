@@ -1,6 +1,6 @@
 ---
 title: "Hello"
-created_at: 2019-07-04 13:00:00 +0000
+created_at: 2019-07-04 13:00
 kind: article
 ---
 

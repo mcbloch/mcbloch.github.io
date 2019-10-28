@@ -1,6 +1,6 @@
 ---
 title: "World"
-created_at: 2019-07-04 13:35:00 +0000
+created_at: 2019-07-04 13:35
 kind: article
 ---
 

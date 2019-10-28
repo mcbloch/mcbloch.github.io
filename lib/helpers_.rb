@@ -6,3 +6,4 @@ use_helper Nanoc::Helpers::Blogging
 include NavigationHelper
 include LayoutHelper
 include CVHelper
+include FontAwesomeHelper
