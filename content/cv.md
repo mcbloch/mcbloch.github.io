@@ -67,7 +67,7 @@ other:
   - type: Finalist Be-OI (Belgische informatica-olympiade)
     year: 2015-2017
   - type: Voorzitter Zeus WPI (Werkgroep Informatica UGent)
-    year: 2018-2019
+    year: 2018-2019, 2019-2020
 ---
 
 Nothing here. For pdf version, go [here](/cv.pdf)
