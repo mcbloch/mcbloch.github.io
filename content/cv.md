@@ -4,10 +4,10 @@ title: CV
 firstName: Robbe
 lastName: Van Herck
 email: robbe@robbevanherck.be
-address:
-  - Oude Arendonksebaan 85
-  - 2470 Retie
-  - België
+address: |
+  Oude Arendonksebaan 85
+  2470 Retie
+  België
 phone: +32 494 10 46 72
 education:
   - type: middelbaar onderwijs
@@ -16,7 +16,7 @@ education:
     direction: Wetenschappen-Wiskunde 8u
     finished: 2017
   - type: universiteit
-    status: bachelor (2017-2020)
+    status: bachelor (2017-heden)
     school: UGent
     direction: Informatica
 otherEducation:
