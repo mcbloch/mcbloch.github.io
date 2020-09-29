@@ -10,15 +10,20 @@ address: |
   België
 phone: +32 494 10 46 72
 education:
+  - type: universiteit
+    status: Master (2020-heden)
+    school: UGent
+    direction: Master Informatica
+  - type: universiteit
+    status: Bachelor
+    school: UGent
+    direction: Bachelor Informatica
+    finished: 2020
   - type: middelbaar onderwijs
     status: afgestudeerd
     school: Sint-Jan Berchmanscollege Mol
     direction: Wetenschappen-Wiskunde 8u
     finished: 2017
-  - type: universiteit
-    status: bachelor (2017-heden)
-    school: UGent
-    direction: Informatica
 otherEducation:
   - type: Hoofdanimator in het jeugdwerk
     started: 2015
