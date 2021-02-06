@@ -132,7 +132,7 @@ request: 01 07 0e 02 XX
     - XX: unknown, probably alarm id?
 
 response: ?? ?? ?? ?? DD TT HH MM
-    - DD: alarm day
+    - DD: alarm day (sunday: 0x01, monday: 0x02, tuesday: 0x04, etc.)
     - TT: alarm type
     - HH: alarm hour
     - MM: alarm minute
@@ -211,7 +211,7 @@ response: ?? ?? II II II II
 request: 01 07 10 09 00
 
 response: ?? ?? ?? ?? HH
-    - HH: the hand indicating the seconds
+    - HH: the hand indicating the seconds (1 = hour, 2 = minutes)
 ### 0d (??)
 
 #### 07 (??)
@@ -395,7 +395,7 @@ TODO: what is flash button mode
 #### 0d (setSingleAlarmTime)
 
 format: 02 07 0d 02 DD OO TT HH MM
-    - DD: alarm day
+    - DD: alarm day (sunday: 0x01, monday: 0x02, tuesday: 0x04, etc.)
     - OO: alarm operation
     - TT: alarm type
     - HH: hour
@@ -418,7 +418,7 @@ format: 02 07 0e 05 WW LL VV SS NN DD
 ##### 0a (sendNotificationHandControl)
 
 format: 02 07 0e 0a LC VV 05 SS DD DD [IC CC]
-    - L: LED color
+    - L: LED color (0 = blue, 1 = yellow, 2 = orange, 3 = purple, 4 = green, 5 = pink)
     - C: number of flashes
     - VV: vibration type (TODO: find enum)
     - SS: size of remaining packet (so [IC CC] repeats (SS / 2) - 1 times)
@@ -466,7 +466,7 @@ format: 02 07 0f 08
 #### 10 (setStopWatchSetting)
 
 format: 02 07 10 09 00 HH
-    - HH: hand id for stopwatch seconds
+    - HH: hand id for stopwatch seconds (1 = hour, 2 = minute)
 
 ### 09 (setConnectionParameter)
 
@@ -476,7 +476,7 @@ format: 02 09 AA AA BB BB CC CC DD DD
     - CC CC: connection latency
     - DD DD: ceil(supervision timeout / 10)
 
-### 0b (buttons)
+### 0b (eventMappingSystemControl)
 
 format: 02 0b BB
     - BB: control bits (TODO: what do these mean?)
@@ -488,16 +488,121 @@ format: 02 0b 01 AA
 
 #### 02 (playButtonAnimation, with repeats)
 
-format: 02 0b 01 AA NN
+format: 02 0b 02 AA NN
     - AA: animation
     - NN: number of repeats
 
 #### 0b (setEventMappings)
 
-format: 02 0b [MM MM]
-    - [MM MM]: any number of EventMapping payloads
-
-TODO: what does this mean?
+format: 02 0b [TT (data)]
+    - TT: one of
+        - 17: Button version 1, data = EE CC NN
+        - 27: Button version 2, data = EE CC NN
+        - 28: Button version 3, data = EE CC XX UU YY MM ZZ
+        - 32: Unmap, data = BB
+        - 40: Tracker, data = EE
+        - 41: Goal tracking, data = EE GG
+        - 50: HID keyboard, data = EE AA KK RR
+        - 51: HID media, data = EE AA KK 00 RR
+        - 60: Bolt auto, data = EE AA GG
+        - 61: Bolt iterate, data = EE AA GG LL
+        - 62: Bolt level, data = EE AA GG OO WW
+        - 72: Mode display, data = EE DD SS
+        with:
+            - AA: animation number
+                one of:
+                    - 00: no animation
+                    - 0b: success
+                    - 0c: error
+                    - 0d: double click received
+                    - 0e: triple click received
+                    - 0f: double click succeeded
+                    - 10: triple click succeeded
+                    - 11: single click received
+                    - 12: long click received
+                    - 13: double press and hold received
+                    - 14: single click succeeded
+                    - 15: long press succeeded
+                    - 16: double press and hold succeeded
+                    - 17: battery level
+            - BB: button (0, 1 (top), 2 (middle) or 3 (bottom))
+            - CC: animation when connected (same as AA)
+            - DD: mode
+                one of:
+                    - 00: date
+                    - 01: time one
+                    - 02: time two
+                    - 03: alert
+                    - 04: alarm
+                    - 05: twenty four hour
+                    - 06: twelve hour
+                    - 07: no mode
+                    - 08: step progress
+                    - 09: seconds
+                    - 0a: countdown
+                    - 0b: defaults
+                    - 0c: sequenced modes (?)
+                    - 0d: stopwatch
+                    - 0f: dial spin
+                    - ff: type error
+            - EE: one of
+                - 00: No event
+                - 01: Consumed
+                - 02: Timed out
+                - 03: End of animation
+                - 04: End of sequence
+                - 05: Connection closed
+                - 0a: Press
+                - 0b: Release after short press
+                - 0c: Long press
+                - 0c: Silvretta triple tap
+                - 0c: Pluto triple tap
+                - 0d: Release after long press
+                - 13: Single click
+                - 14: Double click
+                - 14: Silvretta double tap
+                - 15: Triple click
+                - 16: Double press and hold
+                - 17: Triple press and hold
+                - 18: Silvretta quadruple tap
+                - 2a: Button 1 pressed
+                - 2b: Button 2 pressed
+                - 2c: Button 3 pressed
+                - 30: Button 1 single press
+                - 31: Button 1 single press and hold
+                - 32: Button 1 double press
+                - 33: Button 1 double press and hold
+                - 34: Button 1 triple press
+                - 35: Button 1 triple press and hold
+                - 36: Button 1 hold released
+                - 38: Button 2 single press
+                - 39: Button 2 single press and hold
+                - 3a: Button 2 double press
+                - 3b: Button 2 double press and hold
+                - 3c: Button 2 triple press
+                - 3d: Button 2 triple press and hold
+                - 3e: Button 2 hold released
+                - 40: Button 3 single press
+                - 41: Button 3 single press and hold
+                - 42: Button 3 double press
+                - 43: Button 3 double press and hold
+                - 44: Button 3 triple press
+                - 45: Button 3 triple press and hold
+                - 46: Button 3 hold released
+            - GG: goal id
+            - II: is group (0 = false, 1 = true)
+            - KK: key code
+            - LL: group level
+            - MM: animation when a timeout occurs (same as AA)
+            - NN: animation when not connected (same as AA)
+            - OO: level 0 (0 = false, 1 = true)
+            - RR: is release enabled (TODO: what does this mean exactly?)
+            - SS: submode (same as DD)
+            - UU: animation when not connected (same as AA)
+            - WW: level 1 (0 = false, 1 = true)
+            - XX: number of times to repeat when connected
+            - YY: number of times to repeat when not connected
+            - ZZ: number of times to repeat when a timeout occurs
 
 #### 30 (unmapAllButtonEvents)
 
