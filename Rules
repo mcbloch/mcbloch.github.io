@@ -9,6 +9,7 @@ compile '/cv.md', rep: :pdf do
 end
 
 compile '/posts/*.md' do
+  filter :kramdown
   layout '/post.erb'
   layout '/default.erb'
 end
