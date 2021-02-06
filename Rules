@@ -43,6 +43,10 @@ route '/assets/**/*' do
   item.identifier.to_s.sub('/assets', '')
 end
 
+route '/raw/*' do
+  item.identifier.to_s.sub('/raw', '')
+end
+
 # Let non-specified stuff simply pass trough
 passthrough '/**/*'
 
