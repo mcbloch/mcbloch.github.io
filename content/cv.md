@@ -1,14 +1,22 @@
 ---
 title: CV
-
 firstName: Robbe
 lastName: Van Herck
-email: robbe@robbevanherck.be
-address: |
-  Oude Arendonksebaan 85
-  2470 Retie
-  België
-phone: +32 494 10 46 72
+links:
+  - icon: phone
+    text: +32 494 10 46 72
+  - icon: home
+    link: https://robbevanherck.be
+    text: robbevanherck.be
+  - icon: envelope
+    link: mailto:robbe@robbevanherck.be
+    text: robbe@robbevanherck.be
+  - icon: github
+    link: https://github.com/robbe7730
+    text: Robbe7730
+  - icon: linkedin
+    link: https://www.linkedin.com/in/robbe-van-herck-724aa0181/
+    text: Robbe Van Herck
 education:
   - type: universiteit
     status: Master (2020-heden)
@@ -25,7 +33,7 @@ education:
     direction: Wetenschappen-Wiskunde 8u
     finished: 2017
 otherEducation:
-  - type: Hoofdanimator in het jeugdwerk
+  - type: Animator/Hoofdanimator in het jeugdwerk
     started: 2015
     organisation: Jonge Helden (Crefi vzw)
     description: Verantwoordelijkheid voor een groep kinderen en (als hoofdanimator) een groep animatoren om alles in goede banen te leiden.
@@ -44,20 +52,20 @@ programmingLanguages:
   - quality: ervaren
     languages:
       - Bash
-      - C/C++
-      - Haskell
       - Java
       - Javascript/Typescript
+      - \LaTeX
       - Python
+      - Rust
   - quality: gemiddeld
     languages:
+      - C/C++
+      - Haskell
       - SQL
-      - \LaTeX
   - quality: basis
     languages:
       - Lua
       - Ruby
-      - Rust
 frameworks:
   - quality: ervaren
     frameworks:
@@ -68,6 +76,7 @@ frameworks:
       - Flask
       - Pandoc
       - Vue.js
+      - Ember
 other:
   - type: Finalist Be-OI (Belgische informatica-olympiade)
     year: 2015-2017

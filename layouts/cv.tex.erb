@@ -27,6 +27,8 @@
 \usepackage{paralist}										% compact lists
 \usepackage{tikz}
 \usepackage{hyperref}
+\usepackage{fontawesome}
+\usepackage[dutch]{babel}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Create column layout
@@ -37,9 +39,9 @@
 
 % frame setup (flowfram package)
 % left frame
-\newflowframe{0.2\textwidth}{\textheight}{0pt}{0pt}[left]
+\newflowframe{0.3\textwidth}{\textheight}{0pt}{0pt}[left]
 	\newlength{\LeftMainSep}
-	\setlength{\LeftMainSep}{0.2\textwidth}
+	\setlength{\LeftMainSep}{0.26\textwidth}
 	\addtolength{\LeftMainSep}{1\columnsep}
 
 % small static frame for the vertical line
@@ -86,16 +88,17 @@
 % Left frame
 %%%%%%%%%%%%%%%%%%%%
 \begin{figure}
-	\hfill
-	\includegraphics[width=0.8\columnwidth]{profile.jpg}
+        \flushleft
+	\includegraphics[width=0.8\columnwidth]{profile.png}
 	\vspace{-7cm}
 \end{figure}
 
-\begin{flushright}\small
+\begin{flushleft}\small
 	<%= item[:firstName] + " " + item[:lastName]%>\\
-	 \href{mailto:<%= item[:email] %>}{<%= item[:email].gsub("@", "@\\\\ ") %>}  \\
-	<%= item[:phone] %>
-\end{flushright}\normalsize
+        <% item[:links].each do |link| %>
+          \href{<%= link[:link] %>}{\faicon{<%= link[:icon] %>} <%= link[:text] %>} \\
+        <% end %>
+\end{flushleft}\normalsize
 \framebreak
 
 
@@ -104,11 +107,6 @@
 \Huge\bfseries {\color{RoyalBlue} <%= item[:firstName] + " " + item[:lastName] %>} \\
 \Large\bfseries {\color{Black} Curriculum Vitae} \\
 \normalsize\normalfont
-
-% About me
-% \begin{AboutMe}
-% Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel bibendum metus. Proin rutrum pharetra molestie. Cras sollicitudin nulla nec leo lobortis in tristique purus pretium. Ut eu felis nulla. Pellentesque condimentum justo ut ligula feugiat nec facilisis tellus ultricies. Nullam sit amet dictum ipsum. Sed lacus neque, hendrerit eu rhoncus nec, pellentesque vitae sem.
-% \end{AboutMe}
 
 \CVSection{Schoolse Opleiding}
   <% item[:education].each do |education| %>
