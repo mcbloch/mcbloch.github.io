@@ -1,163 +1,191 @@
-%%% LaTeX Template: Designer's CV
-%%%
-%%% Source: http://www.howtotex.com/
-%%% Feel free to distribute this template, but please keep the referal to HowToTeX.com.
-%%% Date: March 2012
+\documentclass[a4paper,12pt]{report}
 
+% Set encoding to utf-8
+\usepackage[utf8]{inputenc}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Document properties and packages
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[a4paper,12pt,final]{memoir}
-
-% misc
-\renewcommand{\familydefault}{bch}	% font
-\pagestyle{empty}					% no pagenumbering
-\setlength{\parindent}{0pt}			% no paragraph indentation
-
-
-% required packages (add your own)
-\usepackage{flowfram}										% column layout
-\usepackage[top=2cm,left=2cm,right=2cm,bottom=2cm]{geometry}% margins
-\usepackage{graphicx}										% figures
-\usepackage{url}											% URLs
-\usepackage[usenames,dvipsnames]{xcolor}					% color
-\usepackage{multicol}										% columns env.
-	\setlength{\multicolsep}{0pt}
-\usepackage{paralist}										% compact lists
-\usepackage{tikz}
-\usepackage{hyperref}
-\usepackage{fontawesome}
+% Set language to Dutch
 \usepackage[dutch]{babel}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Create column layout
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% define length commands
-\setlength{\vcolumnsep}{\baselineskip}
-\setlength{\columnsep}{\vcolumnsep}
+% Set the margins
+\usepackage[
+    left=1cm,
+    right=1cm,
+    top=1cm,
+    bottom=1cm,
+]{geometry}
 
-% frame setup (flowfram package)
-% left frame
-\newflowframe{0.3\textwidth}{\textheight}{0pt}{0pt}[left]
-	\newlength{\LeftMainSep}
-	\setlength{\LeftMainSep}{0.26\textwidth}
-	\addtolength{\LeftMainSep}{1\columnsep}
+% Fancy colors
+\usepackage{color}
 
-% small static frame for the vertical line
-\newstaticframe{1.5pt}{\textheight}{\LeftMainSep}{0pt}
+% Pictures
+\usepackage{graphicx}
+\usepackage{float}
 
-% content of the static frame
-\begin{staticcontents}{1}
-\hfill
-\tikz{%
-	\draw[loosely dotted,color=RoyalBlue,line width=1.5pt,yshift=0]
-	(0,0) -- (0,\textheight);}%
-\hfill\mbox{}
-\end{staticcontents}
+% Icons
+\usepackage{fontawesome}
 
-% right frame
-\addtolength{\LeftMainSep}{1.5pt}
-\addtolength{\LeftMainSep}{1\columnsep}
-\newflowframe{0.7\textwidth}{\textheight}{\LeftMainSep}{0pt}[main01]
+% Hyperlinks
+\usepackage[hidelinks]{hyperref}
 
+% Variable-width minipages
+\usepackage{varwidth}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% define macros (for convience)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\Sep}{\vspace{1.5em}}
-\newcommand{\SmallSep}{\vspace{0.5em}}
+% For timeline
+\usepackage{xcolor}
 
-\newenvironment{AboutMe}
-	{\ignorespaces\textbf{\color{RoyalBlue} About me}}
-	{\Sep\ignorespacesafterend}
+% Better alignment
+\usepackage{ragged2e}
 
-\newcommand{\CVSection}[1]
-	{\Large\textbf{#1}\par
-	\SmallSep\normalsize\normalfont}
+% More itemize options
+\usepackage{enumitem}
 
-\newcommand{\CVItem}[1]
-	{\textbf{\color{RoyalBlue} #1}}
+% Better drawing
+\usepackage{tikz}
+\usepackage{dashrule}
+\usetikzlibrary{decorations.markings}
 
+% Nicer font
+\usepackage{arev}
+\usepackage[T1]{fontenc}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Begin document
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Accent color
+\definecolor{accent1}{RGB}{0, 60, 237}
+\definecolor{accent2}{RGB}{11, 117, 214}
+\definecolor{accent3}{RGB}{0, 185, 237}
+
+% Helper commands
+\newcommand{\sectiontitle}[1]{\LARGE \textcolor{accent1}{#1} \normalsize}
+\newcommand{\subsectiontitle}[1]{\large \textcolor{accent1}{#1} \normalsize}
+%% From https://tex.stackexchange.com/questions/447326/whats-the-dotted-line-equivalent-of-rule
+\newcommand{\dhorline}[3][0]{%
+    \tikz[baseline]{\path[decoration={markings,
+      mark=between positions 0 and 1 step 10*#3
+      with {\node[fill, circle, minimum width=#3, inner sep=0.5pt, anchor=south west] {};}},postaction={decorate}]  (0,#1) -- ++(#2,0);}}
+\newcommand{\sectionspacing}{\vspace{1em}\par\noindent\textcolor{accent3}{\dhorline{\textwidth}{0.5pt}}\vspace{1em}}
+\newcommand{\tlyearitem}[1]{
+  \parbox[b]{6em}{\hfill{\color{accent3}\bfseries\sffamily#1}~$\cdots\cdots$~}
+  \vrule\quad\parbox[c]{4.5cm}
+  {~\\[7pt]}\\[-3pt]
+}
+\newcommand{\tltextitem}[1]{
+  \parbox[b]{6em}~
+  \makebox[0pt][c]{$\bullet$}\vrule\quad\parbox[c]{4.5cm}
+  {\vspace{7pt}\color{black}\raggedright\sffamily#1\\[7pt]}\\[-3pt]
+}
+
+% Disable page numbering
+\pagenumbering{gobble}
+
 \begin{document}
 
-% Left frame
-%%%%%%%%%%%%%%%%%%%%
-\begin{figure}
-        \flushleft
-	\includegraphics[width=0.8\columnwidth]{profile.png}
-	\vspace{-7cm}
-\end{figure}
+% ----- HEADER SECTION -----
+\begin{minipage}{0.2\linewidth} % Image
+  \begin{figure}[H]
+    \includegraphics[width=\linewidth]{profile.png}
+  \end{figure}
+\end{minipage}
+\begin{minipage}{0.8\linewidth} % Name + links
+  \centering
+  \Huge
+  \textcolor{accent2}{\textsc{<%= item[:firstName] %> <%= item[:lastName] %>}}
+  \normalsize
 
-\begin{flushleft}\small
-	<%= item[:firstName] + " " + item[:lastName]%>\\
-        <% item[:links].each do |link| %>
-          \href{<%= link[:link] %>}{\faicon{<%= link[:icon] %>} <%= link[:text] %>} \\
-        <% end %>
-\end{flushleft}\normalsize
-\framebreak
-
-
-% Right frame
-%%%%%%%%%%%%%%%%%%%%
-\Huge\bfseries {\color{RoyalBlue} <%= item[:firstName] + " " + item[:lastName] %>} \\
-\Large\bfseries {\color{Black} Curriculum Vitae} \\
-\normalsize\normalfont
-
-\CVSection{Schoolse Opleiding}
-  <% item[:education].each do |education| %>
-    \CVItem {<%= education[:school] %>, <%= education[:status] + (if education[:finished] then " (" + education[:finished].to_s + ")" else "" end)%>}\\
-      <%= education[:direction] %>
-    \SmallSep
+  \vspace{1em}
+  <% item[:links][0..1].each do |link| %>%
+    \href{<%= link[:link] %>}{\faicon{<%= link[:icon] %>} <%= link[:text] %>}\hspace{0.5em}  %
   <% end %>
-\Sep
+  <% item[:links][2..].each do |link| %>%
+    \href{<%= link[:link] %>}{\faicon{<%= link[:icon] %>} <%= link[:text] %>}\hspace{0.5em}  %
+  <% end %>
+\end{minipage}
 
-\CVSection{Niet-Schoolse Opleiding}
-	  <% item[:otherEducation].each do |otherEducation| %>
-			\CVItem {<%= otherEducation[:type] %>} \hfill
-				\scriptsize
-					{<%= otherEducation[:organisation].tr(" ", "~") %>}\\
-				\normalsize
-				<%= otherEducation[:description] %>
-			\SmallSep
-	  <% end %>
-\Sep
+\sectionspacing
 
-\CVSection{Talen}
-  \begin{compactitem}[\color{RoyalBlue}$\circ$]
-    <% item[:languages].each do |language| %>
-      \item {<%= language[:language] %>}: {<%= language[:quality] %>}
+% ----- EDUCATION -----
+\begin{minipage}[t]{0.45\linewidth} % School
+  \sectiontitle{Schoolcarrière}
+  \begin{table}[H]
+    \color{gray}
+    \tlyearitem{Nu}
+    <% item[:education].each do |education| %>%
+      \tltextitem{<%= education[:school] %> \\
+        \footnotesize <%= education[:field] %> \normalsize}
+      \tlyearitem{<%= education[:started] %>}%
     <% end %>
-  \end{compactitem}
-\Sep
+    \bigskip
+  \end{table}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\linewidth} % Non-school
+  \sectiontitle{Andere opleidingen}
+  \vspace{1em}
 
-% Skills
-\CVSection{Softwarekennis}
-  \CVItem{Programmeertalen}
-    \begin{compactitem}[\color{RoyalBlue}$\circ$]
-        <% item[:programmingLanguages].each do |programmingLanguage| %>
-          \item {<%= programmingLanguage[:quality] %>}: {<%= programmingLanguage[:languages].sort * ", " %>}
+  <% item[:otherEducation].each do |education| %>%
+    \centering\large
+    \textbf{\textcolor{accent2}{<%= education[:type] %>}} \\
+    \scriptsize\raggedleft%
+    <%= education[:organisation] %>%
+    \footnotesize\justify%
+    <%= education[:description] %>%
+    \normalsize%
+    \vspace{1em}
+
+  <% end %>
+  \raggedright
+\end{minipage}
+
+\sectionspacing
+
+% ----- COMPUTERS -----
+
+\begin{minipage}[t]{0.45\linewidth} % Programming languages
+  \raggedright
+  \sectiontitle{Vaardigheden}
+  \begin{description}
+    \item\subsectiontitle{Programmeertalen} \\
+      \begin{description}[style=nextline]
+        <% item[:programmingLanguages].each do |quality| %>%
+          \item[\textcolor{accent2}{\MakeUppercase <%= quality[:quality] %>}:] <%= quality[:languages].join(", ") %>
         <% end %>
-    \end{compactitem}
-	\SmallSep
+      \end{description}
+    \item\subsectiontitle{Talen} \\
+      \begin{description}
+        <% item[:languages].each do |language| %>%
+        \item[\textcolor{accent2}{<%= language[:language] %>}:] <%= language[:quality] %>
+        <% end %>
+      \end{description}
+  \end{description}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.45\linewidth} % Projects
+  \sectiontitle{Projecten}
+  \begin{description}[style=nextline]
+    <% item[:projects].each do |project| %>%
+    \item[\textcolor{accent2}{<%= project[:name] %>}: \href{<%= project[:github] %>}{\faicon{github}}] <%= project[:description] %>
+    <% end %>
+  \end{description}
+\end{minipage}
 
-	\CVItem{Frameworks}
-		\begin{compactitem}[\color{RoyalBlue}$\circ$]
-			<% item[:frameworks].each do |framework| %>
-				\item {<%= framework[:quality] %>}: {<%= framework[:frameworks].sort * ", " %>}
-			<% end %>
-		\end{compactitem}
-	\Sep
+\newpage
 
-\CVSection{Andere}
-	\begin{compactitem}[\color{RoyalBlue}$\circ$]
-		<% item[:other].each do |other| %>
-			\item {<%= other[:year] + ": " + other[:type] %>}
-		<% end %>
-	\end{compactitem}
+\sectiontitle{Hobbies en intresses}
+
+\begin{minipage}[t]{0.45\linewidth} % School
+  \vspace{1em}
+  <% item[:hobbies].slice(0, (item[:hobbies].length() + 1) / 2).each do |hobby| %>
+    \textbf{\textcolor{accent2}{<%= hobby[:type] %>}} \\
+    \par <%= hobby[:description] %>
+    \vspace{1em}
+  <% end %>
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.45\linewidth} % Projects
+  \vspace{1em}
+  <% item[:hobbies].slice((item[:hobbies].length() + 1) / 2, item[:hobbies].length()).each do |hobby| %>
+    \textbf{\textcolor{accent2}{<%= hobby[:type] %>}} \\
+    \par <%= hobby[:description] %>
+    \vspace{1em}
+  <% end %>
+\end{minipage}
 
 \end{document}
