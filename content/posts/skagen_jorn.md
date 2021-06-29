@@ -149,5 +149,5 @@ what the watch is _really_ able to do and make a GadgetBridge implementation
 that has more features than the original app. _mission accomplished_
 
 [gadgetbridge]: https://codeberg.org/Freeyourgadget/Gadgetbridge
-[commands]: https://robbevanherck.be/skagen_commands.md
-[files]: https://robbevanherck.be/skagen_files.md
+[commands]: https://robbevanherck.be/skagen_commands.txt
+[files]: https://robbevanherck.be/skagen_files.txt
