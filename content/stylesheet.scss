@@ -7,15 +7,14 @@ $about-height: 150px;
 // ----- GENERAL -----
 
 body {
-    margin: 0 auto;
-    max-width: 800px;
+    @media print {
+        padding: 2cm !important;
+    }
+    @media screen {
+        max-width: 800px;
+        margin: 0 auto;
+    }
     font: 11pt/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 h1 {
@@ -49,6 +48,25 @@ a {
         border: 1px solid black;
     }
     width: 100%;
+}
+
+@media print {
+    .page:not(:last-child) {
+        break-after: page;
+        clear: both !important;
+    }
+}
+
+.page {
+    display: flex;
+    float: none;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.page:not(:first-child) {
+    // TODO: This does not yet work in Firefox...
+    margin-top: 2cm;
 }
 
 // ----- ABOUT ME -----
@@ -130,9 +148,18 @@ a {
         .project {
             border: 1px solid lightgray;
             border-radius: 7px;
-            width: 45%;
             padding: 1em;
-            margin: 0.2em;
+
+            // Print mode does wierd things with wrapping...
+            // Especially chromium
+            @media print {
+                width: 44%;
+                margin-top: 0.5em;
+            }
+            @media screen {
+                width: 46%;
+                margin-top: 0.2em;
+            }
 
             h3 {
                 margin: 0;

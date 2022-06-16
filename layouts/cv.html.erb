@@ -15,69 +15,73 @@
 </header>
 
 <main>
-    <div id="education" class="half-block">
-        <h2>Education</h2>
-        <ul id="education-timeline">
-            <li>
-                <span class="education-year">Now</span>
-            </li>
-            <% @item[:education].each do |education| %>
-            <li>
-                <a class="education-school" href="<%= education[:uri] %>"><%= education[:school] %></a>
-                <span class="education-field"><%= education[:field] %></span>
-                <span class="education-year"><%= education[:started] %></span>
-            </li>
+    <section id="page1" class="page">
+        <section id="education" class="half-block">
+            <h2>Education</h2>
+            <ul id="education-timeline">
+                <li>
+                    <span class="education-year">Now</span>
+                </li>
+                <% @item[:education].each do |education| %>
+                <li>
+                    <a class="education-school" href="<%= education[:uri] %>"><%= education[:school] %></a>
+                    <span class="education-field"><%= education[:field] %></span>
+                    <span class="education-year"><%= education[:started] %></span>
+                </li>
+                <% end %>
+            </ul>
+        </section>
+
+        <section id="skills" class="half-block">
+            <h2>Skills</h2>
+            <h3>Programming Languages</h3>
+            <ul>
+            <% @item[:programminglanguages].each do |quality| %>
+                <li marker="<%= quality[:quality] %>"><%= quality[:languages].join ", " %></li>
             <% end %>
-        </ul>
-    </div>
+            </ul>
 
-    <div id="skills" class="half-block">
-        <h2>Skills</h2>
-        <h3>Programming Languages</h3>
-        <ul>
-        <% @item[:programminglanguages].each do |quality| %>
-            <li marker="<%= quality[:quality] %>"><%= quality[:languages].join ", " %></li>
-        <% end %>
-        </ul>
+            <h3>Languages</h3>
+            <ul>
+            <% @item[:languages].each do |quality| %>
+                <li marker="<%= quality[:language] %>"><%= quality[:quality] %></li>
+            <% end %>
+            </ul>
+        </section>
 
-        <h3>Languages</h3>
-        <ul>
-        <% @item[:languages].each do |quality| %>
-            <li marker="<%= quality[:language] %>"><%= quality[:quality] %></li>
-        <% end %>
-        </ul>
-    </div>
-
-    <div id="projects" class="full-block">
-        <h2>Project Highlights</h2>
-        <div id="project-list">
-            <% @item[:projects].each do |project| %>
-            <div class="project">
-                <h3><a href="<%= project[:uri] %>">
-                    <i class="icon fa-brands fa-github"></i><%= project[:name] %>
-                </a></h3>
-                <div class="project-description"><%= project[:description] %></div>
-                <% project[:languages].each do |language| %>
-                    <span class="project-language"><%= language %></span>
+        <section id="projects" class="full-block">
+            <h2>Project Highlights</h2>
+            <div id="project-list">
+                <% @item[:projects].each do |project| %>
+                <div class="project">
+                    <h3><a href="<%= project[:uri] %>">
+                        <i class="icon fa-brands fa-github"></i><%= project[:name] %>
+                    </a></h3>
+                    <div class="project-description"><%= project[:description] %></div>
+                    <% project[:languages].each do |language| %>
+                        <span class="project-language"><%= language %></span>
+                    <% end %>
+                </div>
                 <% end %>
             </div>
+        </section>
+    </section>
+
+    <section id="page2" class="page">
+        <section id="volunteer-work" class="half-block">
+            <h2>Volunteer Work</h2>
+            <% @item[:volunteering].each do |org| %>
+                <h3><%= org[:function] %> at <a href="<%= org[:uri] %>"><%= org[:name] %></a></h3>
+                <%= org[:description] %>
             <% end %>
-        </div>
-    </div>
+        </section>
 
-    <div id="volunteer-work" class="half-block">
-        <h2>Volunteer Work</h2>
-        <% @item[:volunteering].each do |org| %>
-            <h3><%= org[:function] %> at <a href="<%= org[:uri] %>"><%= org[:name] %></a></h3>
-            <%= org[:description] %>
-        <% end %>
-    </div>
-
-    <div id="achievements" class="half-block">
-        <h2>Achievements</h2>
-        <% @item[:achievements].each do |achievement| %>
-            <h3><%= achievement[:name] %></a></h3>
-            <%= achievement[:description] %>
-        <% end %>
-    </div>
+        <section id="achievements" class="half-block">
+            <h2>Achievements</h2>
+            <% @item[:achievements].each do |achievement| %>
+                <h3><%= achievement[:name] %></a></h3>
+                <%= achievement[:description] %>
+            <% end %>
+        </section>
+    </section>
 </main>
