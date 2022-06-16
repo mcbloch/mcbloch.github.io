@@ -1,55 +1,32 @@
 #!/usr/bin/env ruby
-require 'byebug'
-require 'nanoc/latexmk'
 
-compile '/cv.md', rep: :pdf do
-  layout '/cv.tex.erb'
-  filter :latexmk, engine: :xelatex
-  write ext: 'pdf'
-end
-
-compile '/posts/*.md' do
+compile '/**/cv.md' do
   filter :kramdown
-  layout '/post.erb'
-  layout '/default.erb'
+  layout '/cv.*'
+  layout '/default.*'
+
+  write '/index.html'
 end
 
 compile '/**/*.md' do
   filter :kramdown
-  layout '/default.erb'
-end
+  layout '/default.*'
 
-compile '/*.html' do
-  layout item.identifier.without_ext + '.erb'
-  layout '/default.erb'
-end
-
-compile '/feed.xml.erb' do
-  filter :erb
-  write '/feed.xml'
-end
-
-# Simplify URLs
-route '/**/*.{md,html}' do
-  if item.identifier =~ '/index.*'
-    '/index.html'
+  if item.identifier =~ '**/index.*'
+    write item.identifier.to_s
   else
-    item.identifier.without_ext + '/index.html'
+    write item.identifier.without_ext + '/index.html'
   end
 end
 
-# Move asset subfolders and files to root folder
-route '/assets/**/*' do
-  item.identifier.to_s.sub('/assets', '')
+compile '/**/*.scss' do
+  filter :sass, syntax: :scss,
+                style: :compressed
+  write item.identifier.without_ext + '.css'
 end
 
-route '/raw/*' do
-  item.identifier.to_s.sub('/raw', '')
+compile '/**/*' do
+  write item.identifier.to_s
 end
 
-# Let non-specified stuff simply pass trough
-passthrough '/**/*'
-
-# Layouts
-layout '/**/*.erb', :erb
-layout '/**/*.cls', :cls
+layout '/**/*', :erb

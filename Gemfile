@@ -1,27 +1,13 @@
-# frozen_string_literal: true
 source 'https://rubygems.org'
 
-gem 'slim'
-
 gem 'nanoc'
-
-gem 'nanoc-latexmk'
-
-gem 'byebug'
-
 gem 'kramdown'
-
 gem 'sass'
 
-gem 'adsf'
-
-gem 'therubyracer'
-
-gem 'autoprefixer-rails'
-
-group :nanoc do
-  gem 'guard-nanoc'
-  gem 'guard-livereload'
+group 'nanoc' do
+  gem 'nanoc-live'
 end
 
-gem 'builder'
+group :test do
+  gem 'w3c_validators', '~> 1.3.1'
+end
