@@ -43,7 +43,7 @@ programminglanguages:
   - quality: Experienced
     languages:
       - Java
-      - Javascript/Typescript
+      - Java-/TypeScript
       - LaTeX
       - Python
       - Rust
