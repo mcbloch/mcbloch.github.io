@@ -47,14 +47,14 @@ programminglanguages:
       - LaTeX
       - Python
       - Rust
-  - quality: Decent
+  - quality: Proficient
     languages:
       - C/C++
       - Haskell
       - SQL
       - Ruby
       - Bash
-  - quality: Basic
+  - quality: Familiar
     languages:
       - Lua
       - Prolog
