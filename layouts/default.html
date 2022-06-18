@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/stylesheet.css">
     <meta name="generator" content="Nanoc <%= Nanoc::VERSION %>">
   </head>
-  <body>
+  <body resource="<%= @item[:resource] %>" prefix="dbo: http://dbpedia.org/ontology/ cv: http://rdfs.org/resume-rdf/">
     <%= yield %>
   </body>
 </html>

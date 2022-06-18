@@ -1,44 +1,53 @@
 ---
 title: Robbe Van Herck - CV
+resource: "#me"
 name: Robbe Van Herck
 links:
-  - icon: fa-solid fa-phone
-    uri: tel:+32-494-10-46-72
+  - uri: tel:+32-494-10-46-72
     text: +32 494 10 46 72
-  - icon: fa-solid fa-envelope
-    uri: mailto:robbe@robbevanherck.be
+    type: phone
+  - uri: mailto:robbe@robbevanherck.be
     text: robbe@robbevanherck.be
-  - icon: fa-solid fa-home
-    uri: https://robbevanherck.be
+    type: email
+  - uri: https://robbevanherck.be
     text: robbevanherck.be
-  - icon: fa-brands fa-github
-    uri: https://github.com/robbe7730
+    type: homepage
+  - uri: https://github.com/robbe7730
     text: Robbe7730
-  - icon: fa-brands fa-linkedin-in
-    uri: https://www.linkedin.com/in/robbe-van-herck-724aa0181/
+    type: github
+  - uri: https://www.linkedin.com/in/robbe-van-herck-724aa0181/
     text: Robbe Van Herck
+    type: linkedin
 education:
   - school: Ghent University
     field: Master Computer Science
     started: 2020
     uri: http://ugent.be
+    type: master
   - school: Ghent University
     field: Bachelor Computer Science
     started: 2017
+    ended: 2020
     uri: http://ugent.be
+    type: bachelor
   - school: Sint-Jan Berchmanscollege Mol
     field: High School (Sciences-Mathematics)
     started: 2011
+    ended: 2017
     uri: http://sjbmol.be
+    type: highschool
 volunteering:
   - name: Jonge Helden
     uri: http://jongehelden.be
     function: Youth Work
     description: Jonge Helden (formerly crefi) is an organization that organizes camps and courses for children and adolescents with a focus on diversity, participation, creativity and expression. From animator, to lead animator and even instructor I made sure the participants and team members got the coaching, support and of course entertainment they needed on each camp or course.
+    started: 2015
   - name: Zeus WPI
     uri: https://zeus.ugent.be
     function: President
     description: For 2 years, I was president of the student union Zeus WPI, who organize free events for people interested in computer science, especially students of Ghent University. The union revolves around showing people the cool, interesting and sometimes simply weird fields in computer science in a friendly environment. In the club room (the basement of the S9 building) we also provide a space where people can work on projects and meet people with similar interests.
+    started: 2017
+    ended: 2020
 programminglanguages:
   - quality: Experienced
     languages:
@@ -79,7 +88,7 @@ projects:
       - Rust
     description: A map that shows the delays and position of Belgian trains. 
   - name: pinetime-rs
-    uri: 
+    uri: https://github.com/Robbe7730/pinetime-rs
     languages:
       - Rust
     description: Custom operating system for the PineTime smart watch.

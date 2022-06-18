@@ -69,6 +69,20 @@ a {
     margin-top: 2cm;
 }
 
+.todo {
+    color: red;
+    &::before {
+        content: "[TODO]"
+    }
+}
+
+.listify>*:not(:last-child) {
+    &::after {
+        content: ",";
+    }
+    display:inline-block;
+}
+
 // ----- ABOUT ME -----
 
 #profile-picture {
