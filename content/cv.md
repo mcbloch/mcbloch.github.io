@@ -107,6 +107,6 @@ projects:
   - name: Many more
     uri: https://github.com/Robbe7730
     languages: []
-    description: Many of my projects are still very much Work In Progress. Feel free to take a look en contributions are always welcome 😉
+    description: Many of my projects are still very much Work In Progress. Feel free to take a look and contributions are always welcome 😉
 ---
 SeeVee
