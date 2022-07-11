@@ -43,6 +43,7 @@ volunteering:
     description: Was project lead, president and assisting board member each for 1 year of the stutend union Zeus WPI, who organize free events for people interested in computer science, especially students of Ghent University. The union revolves around showing people the cool, interesting and sometimes simply weird fields in computer science in a friendly environment. In the club room (the basement of the S9 building) we also provide a space where people can work on projects and meet people with similar interests.
     started: 2019
     ended: 2022
+projects: []
 programminglanguages:
   - quality: Experienced
     languages:
