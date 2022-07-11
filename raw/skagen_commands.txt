@@ -1,0 +1,926 @@
+# All known commands
+
+All formats are hexadecimal, [XX YY] means repeat XX YY a number of times.
+
+checked:
+     a.java - bi.java (not commands)
+    bj.java - cz.java (commands)
+    da.java           (not a command)
+    db.java - dn.java (commands)
+    do.java - dp.java (not commands)
+    dq.java - fl.java (commands)
+    fm.java - fr.java (not commands)
+
+## 01 (request/response)
+
+These commands are sent on "3dda0002-957f-7d4a-34a6-74696673696d" (0x0201)
+
+### 03 (??)
+
+#### 03 (getInactivityNudge)
+
+request: 01 03 03 01
+
+response: ?? ?? ?? ?? EE LL VV SS AA BB CC DD II
+    - EE: enabled (0/1)
+    - LL: LED sequence
+    - VV: vibration sequence
+    - SS: sound sequence
+    - AA: start hour
+    - BB: start minute
+    - CC: end hour
+    - DD: end minute
+    - II: repeat interval in minutes
+
+#### 04 (getInactivityNudge, actually getGoalHitNotification)
+
+request: 01 03 04 01
+
+response: ?? ?? ?? ?? EE LL VV SS AA BB CC DD II
+    - EE: enabled (0/1)
+    - LL: LED sequence
+    - VV: vibration sequence
+    - SS: sound sequence
+    - AA: start hour
+    - BB: start minute
+    - CC: end hour
+    - DD: end minute
+    - II: repeat interval in minutes
+
+#### 05 (getWristFlickState)
+
+request: 01 03 05
+
+response: ?? ?? EE
+    - EE: enabled
+
+### 04 (getTime)
+
+request: 01 04
+
+response: ?? ?? TT TT TT TT MM MM OO OO
+    - TT TT TT TT: timestamp in UTC seconds
+    - MM MM: milliseconds
+    - OO OO: timezone offset in minutes
+
+### 05 (getGoal)
+
+request: 01 05
+
+response: ?? ?? UU GG GG GG
+    - UU: unused
+    - GG GG GG: goal
+
+### 06 (getActivityPoint)
+
+request: 01 06
+
+response: ?? ?? UU AA AA AA
+    - UU: unused
+    - AA AA AA: activity point (TODO: what does this mean?)
+
+### 07 (??)
+
+#### 02 (getClockState)
+
+request: 01 07 03
+
+response: ?? ?? SS
+    - SS: clock state (TODO: what does this mean)
+
+#### 03 (getTripleTapEnable)
+
+request: 01 07 03
+
+response ?? ?? EE
+    - EE: enabled (0 = false, else true)
+
+#### 07 (serialNumberGetLock)
+
+request: 01 07 07 a7
+
+response: ?? ?? LL
+    - LL: serial number locked (0/1)
+
+#### 08 (getAdvDataState)
+
+request 01 07 08
+
+response: ?? ?? SS
+    - SS: adv data state (0 = false, else true) (TODO: what does this mean?)
+
+#### 09 (getActivityTaggingState)
+
+request: 01 07 09
+
+response: ?? ?? SS
+    - SS: activity tagging state (0 = false, else true) (TODO: what does this mean?)
+
+#### 0a (getFlashButtonMode)
+
+request: 01 07 0a
+
+response: ?? ?? EE FF
+    - EE: activity tracking enabled (0 = false, else true)
+    - FF: flash button mode (TODO: what does this mean?)
+
+#### 0e (??)
+
+##### 02 (getSingleAlarmTime)
+
+request: 01 07 0e 02 XX
+    - XX: unknown, probably alarm id?
+
+response: ?? ?? ?? ?? DD TT HH MM
+    - DD: alarm day (sunday: 0x01, monday: 0x02, tuesday: 0x04, etc.)
+    - TT: alarm type
+    - HH: alarm hour
+    - MM: alarm minute
+
+##### 05 (getSingleAlarmTime, actually getAlarmParameters)
+
+request: 01 07 0e 05
+
+response: ?? ?? ?? ?? II LL VV SS MM DD
+    - II: smart alarm (probably boolean)
+    - LL: LED sequence
+    - VV: vibration sequence
+    - SS: sound sequence
+    - MM: minutes per snooze
+    - DD: alarm duration
+
+#### 0f (??)
+
+##### 01 (getCallTextNotification)
+
+request: 01 07 0f 01
+
+response: ?? ?? ?? ?? [LL VV SS]
+    - LL: LED sequence
+    - VV: vibration sequence
+    - SS: sound sequence
+    once for calls, once for text
+
+##### 03 (getCallTextNotificationWindows)
+
+request: 01 07 0f 03
+
+response: ?? ?? ?? ?? AA BB CC DD
+    - AA: start hour
+    - BB: start minutes
+    - CC: end hour
+    - DD: end minutes
+
+### 08 (getBattery)
+
+request: 01 08
+
+response: ?? ?? BB
+    - BB: battery level (percentage)
+
+### 0a (getConnectionParameter)
+
+request: 01 0a
+
+response: ?? ?? AA AA BB BB CC CC DD DD
+    - AA AA: ceil(minimum connection interval / 1.25)
+    - BB BB: floor(maximum connection interval / 1.25)
+    - CC CC: connection latency
+    - DD DD: ceil(supervision timeout / 10)
+
+### 0c (??)
+
+#### df (getNumberOfMappedEventPackets)
+
+request: 01 0c df
+
+response: ?? ?? NN NN
+    - NN NN: number of mapped event packets
+
+TODO: what does this mean?
+
+#### ef (getConnectionHeartbeatInterval)
+
+request: 01 0c ef
+
+response: ?? ?? II II II II
+    - II II II II: connection heartbeat interval
+
+#### 10 (getStopWatchSetting)
+
+request: 01 07 10 09 00
+
+response: ?? ?? ?? ?? HH
+    - HH: the hand indicating the seconds (1 = hour, 2 = minutes)
+### 0d (??)
+
+#### 07 (??)
+
+##### 01 (getGroupId)
+
+request: 01 0d 07 02
+
+response: ?? ?? ?? II
+    - II: group id
+
+##### 02 (getPasscode)
+
+request: 01 0d 07 02
+
+response: ?? ?? ?? PP PP PP PP PP PP PP PP PP PP PP PP PP PP PP PP
+    - PP PP PP PP PP PP PP PP PP PP PP PP PP PP PP PP: passcode
+
+### 0f (getVibeStrength)
+
+request: 01 0f 08
+
+response: ?? ?? ?? SS
+    - SS: vibration strength
+
+### 10 (getGoalInSteps)
+
+request: 01 10
+
+response: ?? ?? GG GG GG GG
+    - GG GG GG GG: goal in steps
+
+### 11 (getCurrentSteps)
+
+request: 01 11
+
+response: ?? ?? SS SS SS SS
+    - SS SS SS SS: current steps
+
+### 12 (getTimezoneOffsetDisplay)
+
+request: 01 12 01
+
+response: ?? ?? ?? OO OO
+    - OO OO: timezone offset in minutes
+
+### 13 (getCountDownSettings)
+
+request: 01 13 01
+
+response: 03 13 01 SS SS SS SS EE EE EE EE OO OO PP
+    - SS SS SS SS: start time in UTC seconds
+    - EE EE EE EE: end time in UTC seconds
+    - OO OO: timezone offset in minutes
+    - PP: progress
+
+### 14 (getGoalTracking)
+
+request: 01 14 01
+
+response: ?? ?? ?? II SS
+    - II: Goal tracking id
+    - SS: Goal tracking state (0 = false, else true)
+
+### 1f (getCurrentHandPositions)
+
+request: 01 1f 12
+
+response: ?? ?? ?? AA AA BB BB CC CC
+    - HH HH: degrees of hours hand
+    - MM MM: degrees of minutes hand
+    - SS SS: degrees of seconds hand
+
+### f0 (getActivationState)
+
+request: 01 f0 0b
+
+response: ?? ?? AA
+    - AA: activated (1 = true, false otherwise)
+
+## 02 (write)
+
+These commands are sent on "3dda0002-957f-7d4a-34a6-74696673696d" (0x0201)
+
+### 03 (??)
+
+#### 03 (setInactivityNudge)
+
+format: 02 03 03 01 EE LL VV SS AA BB CC DD II
+    - EE: enabled (0/1)
+    - LL: LED sequence
+    - VV: vibration sequence
+    - SS: sound sequence
+    - AA: start hour
+    - BB: start minute
+    - CC: end hour
+    - DD: end minute
+    - II: repeat interval in minutes
+
+#### 04 (setGoalHitNotification)
+
+format: 02 03 04 01 EE LL VV SS AA BB CC DD
+    - EE: enabled (0/1)
+    - LL: LED sequence
+    - VV: vibration sequence
+    - SS: sound sequence
+    - AA: start hour
+    - BB: start minute
+    - CC: end hour
+    - DD: end minute
+
+#### 05 (setWristFlickState)
+
+format: 02 03 05 SS
+    - SS: wrist flick enabled (0/1)
+
+### 04 (setTime)
+
+format: 02 04 TT TT TT TT MM MM OO OO
+    - TT TT TT TT: timestamp in UTC seconds
+    - MM MM: milliseconds
+    - OO OO: timezone offset in minutes
+
+### 05 (setGoal)
+
+format: 02 05 00 GG GG GG
+    - GG GG GG: goal
+
+### 06 (setActivityPoint)
+
+format: 02 06 00 AA AA AA
+    - AA AA AA: activity point
+
+### 07 (??)
+
+#### 01 (serialNumberSet)
+
+format: 02 07 01 SS SS SS SS SS SS SS SS SS SS SS
+    - SS SS SS SS SS SS SS SS SS SS SS: null-terminated, 10 characters UTF-8
+      string
+
+#### 02 (setClockState)
+
+format: 02 07 02 CC
+    - CC: clock state
+
+#### 03 (setTripleTapEnable)
+
+format: 02 07 03 EE
+    - EE: triple tap enabled (0/1)
+
+TODO: what is triple tap?
+
+#### 07 (serialNumberChangeAndLock)
+
+format: 02 07 07 a8 SS SS SS SS SS SS SS SS SS SS SS
+    - SS SS SS SS SS SS SS SS SS SS SS: null-terminated, 10 characters UTF-8
+      string
+
+
+#### 08 (setExtraAdvDataState)
+
+format: 02 07 08 EE
+    - EE: advDataState (0/1)
+
+TODO: what does this mean?
+
+#### 09 (setActivityTaggingState)
+
+format: 02 07 09 EE
+    - EE: activity tagging state (0/1)
+
+#### 0a (setFlashButtonMode)
+
+format: 02 07 0a EE MM
+    - EE: enabled (0/1)
+    - MM: flash button mode
+
+TODO: what is flash button mode
+
+#### 0d (setSingleAlarmTime)
+
+format: 02 07 0d 02 DD OO TT HH MM
+    - DD: alarm day (sunday: 0x01, monday: 0x02, tuesday: 0x04, etc.)
+    - OO: alarm operation
+    - TT: alarm type
+    - HH: hour
+    - MM: minute
+
+TODO: what do these parameters mean?
+
+#### 0e (??)
+
+##### 05 (setAlarmParameters)
+
+format: 02 07 0e 05 WW LL VV SS NN DD
+    - WW: window in minute (TODO: what does this mean?)
+    - LL: LED sequence
+    - VV: vibration sequence
+    - SS: sound sequence
+    - NN: snooze time in minutes
+    - DD: alarm duration in minutes
+
+##### 0a (sendNotificationHandControl)
+
+format: 02 07 0e 0a LC VV 05 SS DD DD [IC CC]
+    - L: LED color (0 = blue, 1 = yellow, 2 = orange, 3 = purple, 4 = green, 5 = pink)
+    - C: number of flashes
+    - VV: vibration type (TODO: find enum)
+    - SS: size of remaining packet (so [IC CC] repeats (SS / 2) - 1 times)
+    - DD DD: duration
+    - I: hand id
+    - C CC: degrees (9 bits)
+
+#### 0e (clearAllAlarms)
+
+format: 02 07 0e 01
+
+#### 0f (??)
+
+##### 01 (setCallTextNotifications)
+
+format: 02 07 0f 01 [LL VV SS]
+    - LL: LED sequence
+    - VV: vibration sequence
+    - SS: sound sequence
+    once for calls, once for text
+
+##### 02 (disableAllCallTextNotifications)
+
+format: 02 07 0f 02
+
+##### 03 (setCallTextNotificationWindows)
+
+format: 02 07 0f 03 [HH MM]
+    - HH: hour
+    - MM: minute
+    (once for start, once for end)
+
+##### 04 (sendCallNotification)
+
+format: 02 08 0f 04
+
+##### 05 (sendTextNotification)
+
+format: 02 08 0f 05
+
+##### 08 (clearAllHandNotifications)
+
+format: 02 07 0f 08
+
+#### 10 (setStopWatchSetting)
+
+format: 02 07 10 09 00 HH
+    - HH: hand id for stopwatch seconds (1 = hour, 2 = minute)
+
+### 09 (setConnectionParameter)
+
+format: 02 09 AA AA BB BB CC CC DD DD
+    - AA AA: ceil(minimum connection interval / 1.25)
+    - BB BB: floor(maximum connection interval / 1.25)
+    - CC CC: connection latency
+    - DD DD: ceil(supervision timeout / 10)
+
+### 0b (eventMappingSystemControl)
+
+format: 02 0b BB
+    - BB: control bits (TODO: what do these mean?)
+
+#### 01 (playButtonAnimation, no repeats)
+
+format: 02 0b 01 AA
+    - AA: animation
+
+#### 02 (playButtonAnimation, with repeats)
+
+format: 02 0b 02 AA NN
+    - AA: animation
+    - NN: number of repeats
+
+#### 0b (setEventMappings)
+
+format: 02 0b [TT (data)]
+    - TT: one of
+        - 17: Button version 1, data = EE CC NN
+        - 27: Button version 2, data = EE CC NN
+        - 28: Button version 3, data = EE CC XX UU YY MM ZZ
+        - 32: Unmap, data = BB
+        - 40: Tracker, data = EE
+        - 41: Goal tracking, data = EE GG
+        - 50: HID keyboard, data = EE AA KK RR
+        - 51: HID media, data = EE AA KK 00 RR
+        - 60: Bolt auto, data = EE AA GG
+        - 61: Bolt iterate, data = EE AA GG LL
+        - 62: Bolt level, data = EE AA GG OO WW
+        - 72: Mode display, data = EE DD SS
+        with:
+            - AA: animation number
+                one of:
+                    - 00: no animation
+                    - 0b: success
+                    - 0c: error
+                    - 0d: double click received
+                    - 0e: triple click received
+                    - 0f: double click succeeded
+                    - 10: triple click succeeded
+                    - 11: single click received
+                    - 12: long click received
+                    - 13: double press and hold received
+                    - 14: single click succeeded
+                    - 15: long press succeeded
+                    - 16: double press and hold succeeded
+                    - 17: battery level
+            - BB: button (0, 1 (top), 2 (middle) or 3 (bottom))
+            - CC: animation when connected (same as AA)
+            - DD: mode
+                one of:
+                    - 00: date
+                    - 01: time one
+                    - 02: time two
+                    - 03: alert
+                    - 04: alarm
+                    - 05: twenty four hour
+                    - 06: twelve hour
+                    - 07: no mode
+                    - 08: step progress
+                    - 09: seconds
+                    - 0a: countdown
+                    - 0b: defaults
+                    - 0c: sequenced modes (?)
+                    - 0d: stopwatch
+                    - 0f: dial spin
+                    - ff: type error
+            - EE: one of
+                - 00: No event
+                - 01: Consumed
+                - 02: Timed out
+                - 03: End of animation
+                - 04: End of sequence
+                - 05: Connection closed
+                - 0a: Press
+                - 0b: Release after short press
+                - 0c: Long press
+                - 0c: Silvretta triple tap
+                - 0c: Pluto triple tap
+                - 0d: Release after long press
+                - 13: Single click
+                - 14: Double click
+                - 14: Silvretta double tap
+                - 15: Triple click
+                - 16: Double press and hold
+                - 17: Triple press and hold
+                - 18: Silvretta quadruple tap
+                - 2a: Button 1 pressed
+                - 2b: Button 2 pressed
+                - 2c: Button 3 pressed
+                - 30: Button 1 single press
+                - 31: Button 1 single press and hold
+                - 32: Button 1 double press
+                - 33: Button 1 double press and hold
+                - 34: Button 1 triple press
+                - 35: Button 1 triple press and hold
+                - 36: Button 1 hold released
+                - 38: Button 2 single press
+                - 39: Button 2 single press and hold
+                - 3a: Button 2 double press
+                - 3b: Button 2 double press and hold
+                - 3c: Button 2 triple press
+                - 3d: Button 2 triple press and hold
+                - 3e: Button 2 hold released
+                - 40: Button 3 single press
+                - 41: Button 3 single press and hold
+                - 42: Button 3 double press
+                - 43: Button 3 double press and hold
+                - 44: Button 3 triple press
+                - 45: Button 3 triple press and hold
+                - 46: Button 3 hold released
+            - GG: goal id
+            - II: is group (0 = false, 1 = true)
+            - KK: key code
+            - LL: group level
+            - MM: animation when a timeout occurs (same as AA)
+            - NN: animation when not connected (same as AA)
+            - OO: level 0 (0 = false, 1 = true)
+            - RR: is release enabled (TODO: what does this mean exactly?)
+            - SS: submode (same as DD)
+            - UU: animation when not connected (same as AA)
+            - WW: level 1 (0 = false, 1 = true)
+            - XX: number of times to repeat when connected
+            - YY: number of times to repeat when not connected
+            - ZZ: number of times to repeat when a timeout occurs
+
+#### 30 (unmapAllButtonEvents)
+
+format: 02 0b 30
+
+#### 31 (unmapButtonEvent)
+
+format: 02 0b 31 NN
+    - NN: member event number
+
+TODO: what does this mean?
+
+### 0c (??)
+
+#### ef (setConnectionHeartbeatInterval)
+
+format: 02 0c ef II II II II
+    - II II II II: hearbeat interval
+
+#### df (setNumberOfMappedEventPackets)
+
+format: 02 0c df NN NN
+    - NN NN: number of mapped event packets
+
+TODO: what are mapped event packets?
+
+### 0d (??)
+
+#### 07 (??)
+
+##### 01 (addGroupID)
+
+format: 02 0d 07 01 II
+    - II: group id (TODO: what does this mean?)
+
+##### 02 (setPasscode)
+
+format: 02 0d 07 02 PP PP PP PP PP PP PP PP PP PP PP PP PP PP PP PP
+    - PP PP PP PP PP PP PP PP PP PP PP PP PP PP PP PP: passcode
+
+### 0e (playNotificationFilterLEDAnimation)
+
+format: 02 0e 04 LL NN MM MM II
+    - LL: is long (0/1)
+    - NN: number of repeats
+    - MM MM: milliseconds between repeats
+    - II: LED color id
+
+### 0f (playNotificationFilterVibration)
+
+format: 02 0f 05 LL NN MM MM
+    - LL: is long (0/1)
+    - NN: number of repeats
+    - MM MM: milliseconds between repeats
+
+### 10 (setGoalInSteps)
+
+format: 02 10 GG GG GG GG
+    - GG GG GG GG: step goal
+
+### 11 (setCurrentSteps)
+
+format 02 11 SS SS SS SS
+    - SS SS SS SS: step count
+
+### 12 (more time?)
+
+#### 01 (setTimezoneOffsetDisplay)
+
+format 02 12 01 TT TT
+    - TT TT: timezone offset display
+
+TODO: what does this mean?
+
+#### 02 (setCurrentTimeService)
+
+format: 02 12 02 TT TT TT TT MM MM OO OO
+    - TT TT TT TT: timestamp in UTC seconds
+    - MM MM: milliseconds
+    - OO OO: timezone offset in minutes
+
+TODO: how is this different from 02 04?
+
+### 13 (setCountDownSettings)
+
+format: 02 13 01 SS SS SS SS EE EE EE EE OO OO
+    - SS SS SS SS: start time in UTC seconds
+    - EE EE EE EE: end time in UTC seconds
+    - OO OO: timezone offset in minutes
+
+### 14 (setGoalTracking)
+
+format: 02 14 01 NN EE
+    - NN: goal id
+    - EE: tracking enabled (0/1)
+
+### 15 (hand movement)
+
+#### 01 (setRequestHandsControl)
+
+format: 02 15 01 PP CC LL
+    - PP: priority
+    - CC: (0/1) send message on movement complete
+    - LL: (0/1) send message on control lost
+
+TODO: what do these messages look like?
+
+#### 02 (setReleaseHandsControl)
+
+format: 02 15 02 DD
+    - DD: delay before releasing
+
+#### 03 (setMovingHands)
+
+format: 02 15 03 MM CC [II PP PP DD SS]
+    - MM: moving type (position/distance, assuming absolute/relative)
+    - CC: number of following settings
+    - II: hand id
+    - PP PP: position in degrees
+    - DD: direction
+    - SS: speed
+
+### 0f (setVibeStrength)
+
+format: 02 0f 08 SS
+    - SS: vibration strength
+
+### f0
+
+#### 05 (displayPairAnimation)
+
+format: 02 f0 05
+
+#### 06 (displaySyncAnimation)
+
+format: 02 f0 06
+
+#### 07 (stopAnimation)
+
+format: 02 f0 07
+
+#### 08 (otaEnter)
+
+request: 02 f0 08
+
+response: ?? ?? 09
+
+TOOD: what does this do?
+
+#### 0a (otaReset)
+
+format: 02 f0 0a
+
+#### 10 (playVibration)
+
+format: 02 f0 10 VV RR MM MM
+    - VV: vibration sequence
+    - RR: number of repeats
+    - MM MM: milliseconds between repeats
+
+#### 11 (playSound)
+
+format: 02 f0 10 SS RR MM MM
+    - SS: sound sequence
+    - RR: number of repeats
+    - MM MM: milliseconds between repeats
+
+#### 12 (playLEDAnimation)
+
+format: 02 f0 12 LL NN MM MM
+    - LL: LED id
+    - NN: number of repeats
+    - MM MM: milliseconds between repeats
+
+### f0 (activate)
+
+format: 02 fe 0b
+
+### f1 (setCalibratedHandPosition)
+
+format: 02 f1 0e
+
+TODO: what does this mean?
+
+## File commands
+
+These commands are sent on "3dda0003-957f-7d4a-34a6-74696673696d" (0x0205).
+Normal responses are sent on the same handle, "data responses" are sent on
+"3dda0004-957f-7d4a-34a6-74696673696d" (0x207)
+
+### 01 (fileStreamingUserInputEvents/fileGet/fileGetHardwareLog)
+
+// fileGetHardwareLog uses handle 0x0010, offset 0 and length 2048
+
+request: 01 HH HH OO OO OO OO LL LL LL LL
+    - HH HH: file handle
+    - OO OO OO OO: file offset
+    - LL LL LL LL: length
+
+response on transfer start: 02 HH HH SS
+    - HH HH: file handle
+    - SS: status (0 = ok)
+
+data response: TT [XX]
+    - TT: 0bE?IIIIII
+        - E: 1 if this is the last packet, 0 otherwise
+        - IIIIII: packet index % 0x3f
+    - [XX]: data, depending on which file is read
+
+response on transfer done: 08 HH HH
+    - HH HH: file handle
+
+### 03 (fileErase/fileEraseHardwareLog/fileEraseActivity)
+
+// fileEraseHardwareLog uses 0x0010
+// fileEraseActivity uses 0x0100
+
+request: 03 HH HH
+    - HH HH: file handle
+
+response: ?? HH HH SS
+    - HH HH: file handle
+    - SS: status
+
+### 05 (fileList)
+
+request: 05
+
+data response: TT NN SS SS SS SS
+    - TT: 0bE?IIIIII
+        - E: 1 if this is the last packet, 0 otherwise
+        - IIIIII: packet index % 0x3f
+    - NN: number of files
+    - SS SS SS SS: total file size
+
+response: 08
+
+### 07 (fileAbort)
+
+request: 07 HH HH
+    - HH HH: file handle
+
+### 0a (otaPut)
+
+request: 0a HH HH OO OO OO OO LL LL LL LL TT TT TT TT
+    - HH HH: file handle
+    - OO OO OO OO: file offset
+    - LL LL LL LL: file length
+    - TT TT TT TT: total file length
+
+response: ?? HH HH SS AA AA AA AA
+    - HH HH: file handle
+    - SS: status
+    - AA AA AA AA: actual number of bytes written
+
+### 0d (otaVerifyFile)
+
+request: 0d 5b 5a
+
+response: ?? 5b 5a SS
+    - SS: status (0 = ok)
+
+### 10 (OTA segments?)
+
+#### 5b 5a (otaVerifySegment)
+
+request: 10 5b 5a OO OO OO OO LL LL LL LL TT TT TT TT
+    - OO OO OO OO: segment offset
+    - LL LL LL LL: segment length
+    - TT TT TT TT: total length
+
+response: ?? 5b 5a SS CC CC CC CC
+    - SS: status (0 = ok)
+    - CC CC CC CC: segment CRC
+
+#### a1 f9 (multipleAlarmsVerify)
+
+request: 10 a1 f9 OO OO OO OO LL LL LL LL TT TT TT TT
+    - OO OO OO OO: segment offset
+    - LL LL LL LL: segment length
+    - TT LL LL LL: total file length
+
+response: ?? a1 f9 SS CC CC CC CC
+    - SS: status
+    - CC CC CC CC: segment CRC
+
+### 12 (otaErase)
+
+request: 12 HH HH PP PP PP PP
+    - HH HH: file handle (hardcoded to be 5b 5a)
+    - PP PP PP PP: page offset
+
+response: ?? HH HH SS NN NN NN NN
+    - HH HH: file handle (expected to be 5b 5a)
+    - SS: status
+    - NN NN NN NN: new size written (TODO: what does this mean?)
+
+### 14 (otaGetSizeWritten)
+
+request: 14 5b 5a
+
+response: ?? 5b 5a SS WW WW WW WW
+    - SS: status
+    - WW WW WW WW: bytes written
+
+### 16 (setLastProcessedFileHandle)
+
+request: 14 HH HH
+    - HH HH: file handle
+
+response: ?? SS
+    - SS: status
+
+### 18 (getLastProcessedFileHandle)
+
+request: 18
+
+data response: HH HH
+    - HH HH: file handle
+
+response: 08

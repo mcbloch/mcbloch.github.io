@@ -1,0 +1,380 @@
+# Files
+
+## Interface
+
+### Requesting files
+
+send 01 HH HH OO OO OO OO LL LL LL LL on characteristic uuid "3dda0003-957f-7d4a-34a6-74696673696d" (0x0205)
+
+HH HH: file handle
+OO OO OO OO: offset
+LL LL LL LL: length
+
+listen for confirmation on "3dda0003-957f-7d4a-34a6-74696673696d" (0x0205)
+        format: 02 HH HH SS
+                HH HH: file handle
+                SS: status (0 = ok, ?)
+
+listen for data on "3dda0004-957f-7d4a-34a6-74696673696d" (0x0207)
+        format: TT (data)
+                TT: 0bF?IIIIII
+                        F (flag): if 1, this is the last packet
+                        IIIIII (index): should be previous index + 1
+
+listen for completion on "3dda0003-957f-7d4a-34a6-74696673696d" (0x0205)
+        format: 08 HH HH
+                HH HH: file handle
+
+### Abort file transfer
+
+send 07 HH HH on "3dda0003-957f-7d4a-34a6-74696673696d" (0x0205)
+HH HH: file handle
+
+(doesn't listen for a response)
+
+### Erase file
+
+send 03 HH HH on "3dda0003-957f-7d4a-34a6-74696673696d" (0x0205)
+HH HH: file handle
+
+listen for response on "3dda0003-957f-7d4a-34a6-74696673696d" (0x0205)
+        format: 04 HH HH SS
+                HH HH: file handle
+                SS: status (0 = ok, ?)
+
+### Get last processed file handle
+
+send 18 on "3dda0003-957f-7d4a-34a6-74696673696d" (0x0205)
+
+listen for response on "3dda0004-957f-7d4a-34a6-74696673696d" (0x0207)
+        format: HH HH
+                HH HH: file handle
+
+listen for completion on "3dda0003-957f-7d4a-34a6-74696673696d" (0x0205)
+        format: 08
+
+### List files
+
+send 05 on "3dda0003-957f-7d4a-34a6-74696673696d" (0x0205)
+
+listen for data like normal files, data format is
+        format: NN SS SS SS SS (probably more, TODO: need to check)
+                NN: number of files
+                SS SS SS SS: total file size
+
+listen for completion on "3dda0003-957f-7d4a-34a6-74696673696d" (0x0205)
+        format: 08
+
+### Set last processed file handle
+
+send 14 HH HH on "3dda0003-957f-7d4a-34a6-74696673696d" (0x0205)
+
+listen for response on "3dda0003-957f-7d4a-34a6-74696673696d" (0x0205)
+        format: ?? SS
+                SS: status
+
+### Streaming file (user input)
+
+Same as reading a file, parsing is different
+
+Packet format: TT PP (data?)
+        TT: like file transfer
+        PP: packet type:
+            - fe: heartbeat (no action)
+            - ff: heartbeat (no action)
+            - df: data follows (size depending on handle)
+                - 0x8e00: SS EE
+                - 0x8ef0: SS EE (any number of extra bytes)
+                - 0x8ef1: SS EE ?? ??
+                format:
+                    SS: sequence number (not TT)
+                    EE: event
+
+## Example from data1
+
+00   01 01 14 00 58 01 00 00 4d 49 8a 5c 37 00 3c 00 76 00 00
+01   0c fe 00 fd 00 d5 01 d7 01 dc 04 dd 01 de 01 e1 01 e2 09
+02   e6 01 e7 07 ca 01 21 2f 21 ef 41 73 31 2f 21 cb 01 c3 71
+03   ff 61 5f 21 43 ca c7 79 ff ca c7 71 ff 31 e7 11 97 21 53
+04   71 ff ca c7 71 ff 73 ff 11 eb 77 ff 71 ff 79 ff 41 7f 71
+05   ff 33 6b 41 1b 71 ff 73 ff 41 4f 77 ff 41 23 73 ff 73 ff
+06   21 7f 73 ff 71 ff ca c7 fe fe ca c7 fe fe 71 f3 61 1b 31
+07   e3 71 ff 21 8f 01 c3 31 9f 31 87 71 6b 31 17 11 7f 41 2f
+08   11 33 01 67 31 df 77 ff 75 ff 71 ff 77 ff 71 0b 11 d7 31
+09   df 73 ff 77 ff 77 ff 73 ff 77 ff 71 ff 75 ff 71 0f 73 ff
+0a   71 ff 73 ff 71 ff 71 ff 71 ff 79 ff 75 ff 71 ff 77 ff 73
+0b   ff ca c7 ca c7 fe fe 7d ff 71 ff 1a 11 73 ff 7b ff 71 ff
+0c   79 ff 31 fb 31 07 75 ff 71 ff 71 ff 71 ff 73 ff 71 ff 71
+0d   7b 31 5f ca c7 ca c7 fe fe 73 ff ca c7 71 ff 41 27 77 ff
+0e   71 ff 41 33 51 f3 31 93 71 ff ca c7 fe fe 71 ff 51 eb 61
+0f   33 73 ff 71 ff ca c7 71 ff 63 6b 31 ff 01 4f 71 ff 21 f7
+10   75 ff 75 ff 61 73 01 9f 31 3f 71 ff 21 07 31 77 61 ab 71
+11   ff 01 5b 11 9f 01 5b 21 83 73 ff 75 ff 31 47 11 fb 72 73 92684a
+
+### Header
+
+2 bytes (file_handle):          0101 (file handle 257)
+2 bytes (file_format):          1400 (file format 20)
+4 bytes (file_length):          58010000 (344 bytes)
+4 bytes (time_seconds):         4d498a5c (Thursday, March 14, 2019 12:30:05 PM)
+2 bytes (milliseconds):         3700 (55 milliseconds)
+2 bytes (minutes_off_utc):      3c00 (60 minutes = UTC+1)
+2 bytes (absolute_number):      7600 (118 = ?)
+1 byte (minor_version):         00 (0)
+1 byte (num_special_fields):    0c (12)
+2 bytes k/v (special_fields):   fe: 00
+                                fd: 00
+                                d5: 01
+                                d7: 01
+                                dc: 04
+                                dd: 01
+                                de: 01
+                                e1: 01
+                                e2: 09
+                                e6: 01
+                                e7: 07
+                                ca: 01
+
+### Entries
+
+21 2f: steps: 0, unknown_value: 76, var: 139
+21 ef: steps: 0, unknown_value: 76, var: 187
+41 73: steps: 0, unknown_value: 76, var: 284
+31 2f: steps: 0, unknown_value: 76, var: 203
+21 cb: steps: 0, unknown_value: 76, var: 178
+01 c3: steps: 0, unknown_value: 76, var: 48 
+...
+
+## Notes
+
+### Header
+
+new code has 3 file formats (0x14, 0x16 and 0x80), old code has 6 (0x11, 0x12, 0x13, 0x14, 0xf01 and 0xf02)
+
+parseFileHandle (reads 2 bytes at index 0)
+parseFileFormat (reads 2 bytes at index 2)
+parseFileLength (reads 4 bytes at index 4 or returns buffer_len for all file
+        formats that are not 0x80 or 0x16)
+parseFileTimestamp (reads 4 bytes at index 8)
+parseFileMilliseconds (reads 2 bytes at index 12)
+parseFileTimezoneOffset (reads 2 bytes at 14)
+parseFileAbsoluteNumber (reads 2 bytes at 16) // TODO: What does this mean?
+parseFileMinorVersion (reads 1 byte at index 18)
+parseFileNumberOfSpecialFields (reads 2 bytes at index 19) // Implementation
+        overlaps with the following function
+parseFileSpecialFields (reads 2 bytes at index 19, which is the number of
+        2-byte special entries after it) // TODO: what do they mean?
+parseFileCRC (reads 4 bytes at index buffer_len - 4)
+
+### Entries
+
+it checks the current byte, if it is smaller than 200 (0xc8), parse it as a normal entry, otherwise treat it as the header for a different type
+
+#### Normal (activity) entries
+
+Normal (activity) enties seem to be a compressed 2-byte structure (for 0x14)
+
+steps and var caluclates "minute points" 
+
+one entry per minute
+
+steps = number of steps taken that minute
+var = some variance, used to calculate sleep quality, if this is below a certain treshold the user is asleep
+
+old implementation also has a value that is calculated by the last 2 bits of the second byte * 25 + 1 for bit 0 == 1 or 10000 when bit 0 == 0
+
+##### Bit 0 of byte 1 is 0
+
+steps = first_byte
+var = second_byte * second_byte * 64
+
+resulting in 0bSSSSSSS0 0bVVVVVVVV
+
+S: steps (including the 0)
+V: var
+
+##### Bit 0 of byte 1 is 1
+
+steps = first_byte & 0b00001110
+var = (first_byte & 0xf0) << 2 + (second_byte >> 2)
+
+resulting in: 0bVVVVSSS1 0bVVVVVVUU
+
+V: parts of var
+S: steps
+
+##### Minute points calculation
+
+steps = min(steps, 250)
+
+if (steps < 105) {
+    step_parameter = 2500
+} else if (steps < 126) {
+    step_parameter = steps * 25 - 125
+} else if (steps < 131) {
+    step_parameter = steps * 400 - 47000
+} else {
+    step_parameter = steps * 40 - 200
+}
+
+if (var > 2500001) {
+    var_parameter = 101
+} else if (var > 50001) {
+    var_parameter = var / 34000 + 27;
+} else if (var > 15001) {
+    var_parameter = ((var & 65535) >> 4) / 625 + 23
+} else if (10000 < var) {
+    var_parameter = ((var & 65535) >> 5) / 75 + 19
+} else {
+    var_parameter = 0
+}
+
+minute_points = (steps * step_parameter * 256) / 10000 + (var_parameter / 8);
+
+#### Valid other entries
+
+##### For 0x14
+
+0xca: FUN_0021d6f0              // similar to handleEntry_GoalTrackingID
+0xe2: handleEntry226_InfomationCodeWithTimestamp
+0xfd: handleEntry253_IgnorePreviousEntry
+0xfe: handleEntry_paddingEntry
+0xff: handleEntry_debugEntry    // not in old implementation?
+
+##### For 0x16 (0x14 plus 0xcb, 0xcc, 0xce, 0xcf, 0xd2, 0xd3, 0xdd, 0xde, 0xdf, 0xe0)
+
+0xca: handleEntry_GoalTrackingID
+0xcb: handle_entry_high_resolution_heartrare    // not my typo
+0xcc: handleEntry_RestingHeartRate
+0xce: handleEntry_HeartrateQuality
+0xcf: handleEntry_RestingQuality
+0xd2: handle_entry_gps_data_point
+0xd3: handle_entry_minute_distance
+0xdd: handleEntry_TaggedWorkout
+0xde: handleEntry_AvgHeartRate
+0xdf: handleEntry_MaxHeartRate
+0xe0: handle_entry_workout_summary
+0xe2: handleEntry226_InfomationCodeWithTimestamp
+0xfd: handleEntry253_IgnorePreviousEntry
+0xfe: handleEntry_paddingEntry
+0xff: handleEntry_debugEntry                    // not in old implementation?
+
+##### For 0x80 (0x16 plus 0xd0 and 0xd1)
+
+0xca: handleEntry_GoalTrackingID
+0xcb: handle_entry_high_resolution_heartrare    // not my typo
+0xcc: handleEntry_RestingHeartRate
+0xce: handleEntry_HeartrateQuality
+0xcf: handleEntry_RestingQuality
+0xd0: handle_entry_on_off_body
+0xd1: handle_entry_on_off_charge
+0xd2: handle_entry_gps_data_point
+0xd3: handle_entry_minute_distance
+0xdd: handleEntry_TaggedWorkout
+0xde: handleEntry_AvgHeartRate
+0xdf: handleEntry_MaxHeartRate
+0xe0: handle_entry_workout_summary
+0xe2: handleEntry226_InfomationCodeWithTimestamp
+0xfd: handleEntry253_IgnorePreviousEntry
+0xfe: handleEntry_paddingEntry
+0xff: handleEntry_debugEntry    // not in old implementation?
+
+### From code
+
+#### From new c++ library
+
+0x0e: handle_entry_workout_summary
+        creates a new workout file
+
+0xca: handleEntry_GoalTrackingID (for file format 0x16)
+        reads 1 byte, keep it in a vector
+
+0xca: handleEntry_GoalTrackingID (for file format 0x80)
+        same as above
+
+0xcb: handle_entry_high_resolution_heartrare // Not my typo
+        reads 2 bytes, keep them in a vector
+        
+0xce: handleEntry_HeartrateQuality (for file format 0x16)
+0xce: handleEntry_HeartrateQuality (for file format 0x80)
+0xcf: handleEntry_RestingQuality (for file format 0x16)
+0xcf: handleEntry_RestingQuality (for file format 0x80)
+0xd0: handle_entry_on_off_body
+0xd1: handle_entry_on_off_charge
+0xd3: handle_entry_minute_distance
+0xdd: handleEntry_TaggedWorkout
+0xde: handleEntry_AvgHeartRate (for file format 0x16)
+0xde: handleEntry_AvgHeartRate (for file format 0x80)
+0xdf: handleEntry_MaxHeartRate (for file format 0x16)
+0xdf: handleEntry_MaxHeartRate (for file format 0x80)
+0xe2: handleEntry226_InfomationCodeWithTimestamp
+0xfd: handleEntry253_IgnorePreviousEntry
+0xfe: handleEntry_paddingEntry
+0x??: handleEntry_Activity (for file format 0x14)
+        read 2 bytes, combined with some of the user profile (age, gender,
+        height, weight) calculates calorie usage, distance per minute
+        
+
+
+0x??: handleEntry_debugEntry (appears unused...)
+        read a debug entry, containing:
+                code: 1/2 byte(s)
+                length: 1/2 byte(s)
+                data: `length` bytes
+
+#### From old java
+
+< 200 (0xc8): handleEntryNormalActivity
+= 200 (0xc8): handleEntry200Dormant
+        reads 1 byte, the number of minutes the user was dorment (no steps or calories, unknown_value gets set to 10000)
+= 201 (0xc9): handleEntry201LowActivity
+= 202 (0xca): handleEntry202GoalTrackingID
+= 202 (0xca): handleEntry202OrienatationChange
+= 203 (0xcb): handleEntry203LostData
+= 204 (0xcc): handleEntry204NewTimestamp
+= 205 (0xcd): handleEntry205BatteryVoltagePlusTemperature
+= 206 (0xce): handleEntry206BatteryVoltage
+= 207 (0xcf): handleEntry207Padding
+= 208 (0xd0): handleEntry208IgnoreLastEntry             // not in new implementation
+= 209 (0xd1): handleEntry209ErrorCode
+= 210 (0xd2): handleEntry210SingleTap
+= 211 (0xd3): handleEntry211SingletapSummary
+= 212 (0xd4): handleEntry212DoubleTap
+= 213 (0xd5): handleEntry213DoubleTapSummary
+= 214 (0xd5): handleEntry214TrippleTap                  // not my typo
+= 215 (0xd7): handleEntry215TrippleTapSummary           // not my typo
+= 220 (0xdc): handleEntry220BigActivity                 // 2 different implementations
+= 221 (0xdd): handleEntry221StartSession
+= 222 (0xde): handleEntry222EndSession
+= 223 (0xdf): handleEntry223MinorFileTypeVersion        // 2 different functions,
+= 224 (0xe0): handleEntry224MinorFileTypeVersion        // but same implementation
+= 225 (0xe1): handleEntry225ResetInfo
+= 226 (0xe2): handleEntry226ResetInfoWithTimestamp
+= 230 (0xe6): handleEntry230LapCountSessionMarker
+= 231 (0xe7): handleEntry231NewLapDetected
+= 253 (0xfd): handleEntry253IgnorePreviousEntry
+= 254 (0xfe): handleEntry254PadBytes
+        ignored
+
+#### From new java com/fossil/fitness/SpecialEntryID
+
+0x00: ACTIVITY
+0xca: GOAL_TRACKING
+0xcb: HIGH_RESOLUTION_HEARTRATE
+0xcc: RESTING_HEARTRATE
+0xcd: STRESS
+0xce: HEARTRATE_QUALITY
+0xcf: RESTING_QUALITY
+0xd0: ON_OFF_BODY_STATE
+0xd1: ON_OFF_CHANGER_STATE // Not my typo, should be ON_OFF_CHARGER_STATE
+0xd2: GPS_DATA_POINT
+0xd3: MINUTE_DISTANCE
+0xdd: TAGGED_ACTIVITY
+0xde: AVG_HEARTRATE
+0xdf: MAX_HEARTRATE
+0xe0: WORKOUT_SUMMARY
+0xe1: INFOMATION_CODE
+0xe2: INFOMATION_CODE_WITH_TIMESTAMP
+0xfd: IGNORE_PREVIOUS_ENTRY
+0xfe: PADDING
+0xff: DEBUGGING
