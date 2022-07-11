@@ -13,6 +13,13 @@
 <main>
     <section id="page1" class="page">
         <section id="education" class="half-block">
+            <% if @item[:description] %>
+              <h2>Me</h2>
+              <p>
+                <%= @item[:description] %>
+              </p>
+            <% end %>
+
             <h2>Education</h2>
             <ul id="education-timeline">
                 <li>
@@ -47,6 +54,17 @@
                     <%# This is an ugly mess to remove whitespaces %>
                     <%- quality[:languages].each do |language| -%>
                         <span rel="cv:hasSkill" typeof="cv:Skill"><span property="cv:skillName"><%= language %></span><span hidden property="cv:skillLevel"><%= quality[:quality] %></span></span>
+                    <%- end -%>
+                </li>
+            <% end %>
+            </ul>
+
+            <h3>Tool experience</h3>
+            <ul>
+            <% @item[:tools].each do |tool| %>
+                <li marker="<%= tool[:group] %>" rel="cv:hasSkill" typeof="cv:Skill" class="listify">
+                    <%- tool[:names].each do |name| -%>
+                        <span rel="cv:hasSkill" typeof="cv:Skill"><span property="cv:skillName"><%= name %></span></span>
                     <%- end -%>
                 </li>
             <% end %>
