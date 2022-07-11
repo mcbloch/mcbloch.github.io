@@ -36,6 +36,17 @@ education:
     ended: 2016
     uri: https://www.kavoskenslaan.be/
     type: highschool
+work:
+  - name: Prior-IT
+    uri: http://prior-it.be
+    function: Fullstack webdeveloper, System administrator / devops guy, cloud engineer
+    description: Started as app developer in my first bachelor. Pivoted to web development fairly quickly and took over the role as main fullstack developer for the promising EVapp application. System administration.
+    started: 2017
+  - name: UGent
+    uri: http://dsa.ugent.be
+    function: Teamlead-IT
+    description: Started as webdevelopper. Quickly transitioned to teamlead of a team of 5-7 student developpers. Main work is on the innovative digitalisation of the DSA (Dienst Studentenactiviteiten). Building a system that integrates with multiple services of the UGent and as a result providing a powerfull interface for student organisations to manage their finances, activities, reservations.
+    started: 2019
 volunteering:
   - name: Zeus WPI
     uri: https://zeus.ugent.be

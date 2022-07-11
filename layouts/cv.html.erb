@@ -64,7 +64,8 @@
             <% end %>
             </ul>
         </section>
-
+        
+        <% if @item[:projects].length > 0 %>
         <section id="projects" class="full-block">
             <h2>Project Highlights</h2>
             <div id="project-list">
@@ -85,8 +86,35 @@
                 <% end %>
             </div>
         </section>
+        <% end %>
     </section>
 
+    <section id="page2" class="page">
+        <% if @item[:work].length > 0 %>
+        <section id="work-experience" class="half-block">
+            <h2>Work experience</h2>
+            <% @item[:work].each do |org| %>
+                <div rel="cv:hasWorkHistory" typeof="cv:WorkHistory">
+                    <h3>
+                        <span property="cv:jobTitle"><%= org[:function] %></span> at
+                        <a href="<%= org[:uri] %>" property="cv:employedIn" typeof="cv:Company">
+                            <span property="schema:name foaf:name"><%= org[:name] %></span>
+                        </a>
+                        (<span property="cv:startDate"><%= org[:started] %></span> -
+                        <% if org[:ended] %>
+                            <span property="cv:endDate"><%= org[:ended] %></span>)
+                        <% else %>
+                            now)
+                        <% end %>
+                    </h3>
+                    <p property="cv:jobDescription">
+                        <%= org[:description] %>
+                    </p>
+                </div>
+            <% end %>
+        </section>
+        <% end %>
+    </section>
     <section id="page2" class="page">
         <section id="volunteer-work" class="half-block">
             <h2>Volunteer Work</h2>
