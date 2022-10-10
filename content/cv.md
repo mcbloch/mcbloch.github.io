@@ -3,7 +3,7 @@ title: Maxime Bloch - CV
 resource: "#me"
 name: Maxime Bloch
 description: Motivated to learn, eager to discover. 
-  I see work when it needs to be done and will proactively ...
+  I see work when it needs to be done and will proactively search for improvements.
   Working in a team and taking responsibility is a second nature given my years of volunteering experience.
   I have know-how in plenty of fields of computer science due to the diversity of my engagements in the last years.
   My current expertise can be found in web development, infrastructure and cloud; but my curiosity will only make this list grow.
