@@ -12,14 +12,15 @@
 
 <main>
     <section id="page1" class="page">
-        <section id="education" class="half-block">
+        <section class="full-block">
             <% if @item[:description] %>
               <h2>Me</h2>
               <p>
                 <%= @item[:description] %>
               </p>
             <% end %>
-
+        </section>
+        <section id="education" class="half-block">
             <h2>Education</h2>
             <ul id="education-timeline">
                 <li>

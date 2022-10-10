@@ -8,7 +8,7 @@ $about-height: 150px;
 
 body {
     @media print {
-        padding: 2cm !important;
+        padding: 1cm !important;
     }
     @media screen {
         max-width: 800px;
