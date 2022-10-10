@@ -126,9 +126,16 @@
                             now)
                         <% end %>
                     </h3>
-                    <p property="cv:jobDescription">
-                        <%= org[:description] %>
-                    </p>
+                    <!--<p property="cv:jobDescription">
+                        <#%= org[:description] %>
+                    </p>-->
+                    <ul>
+                    <% org[:desc_items].each do |item| %>
+                      <li class="listify">
+                        <span><%= item %></span>
+                      </li>
+                    <% end %>
+                    </ul>
                 </div>
             <% end %>
         </section>
