@@ -67,7 +67,12 @@ volunteering:
   - name: Zeus WPI
     uri: https://zeus.ugent.be
     function: Project lead, President
-    description: Was project lead, president and assisting board member each for 1 year of the student union Zeus WPI, who organize free events for people interested in computer science, especially students of Ghent University. The union revolves around showing people the cool, interesting and sometimes simply weird fields in computer science in a friendly environment. In the club room (the basement of the S9 building) we also provide a space where people can work on projects and meet people with similar interests.
+    description: 
+      Was board member for 3 years of the student union Zeus WPI. 
+      Started out as project lead in my first year. Continued my participation as president during a tough year due to the pandemic.
+      Finished as an assisting board member. Zeus WPI organizes free events for people interested in computer science, especially students of Ghent University. 
+      The union revolves around showing people the cool, interesting, and sometimes simply weird fields in computer science in a friendly environment. 
+      In the clubroom (the basement of the S9 building) we also provide a space where people can work on projects and meet others with similar interests.
     started: 2019
     ended: 2022
 projects: []
@@ -121,6 +126,11 @@ languages:
     quality: Basics
 achievements:
   - name: Winner Cybersecurity Challenge Belgium (CSCBE)
-    description: The Cybersecurity Challenge Belgium is, as the name implies, a challenge revolving around cybersecurity. Students over the age of 18 are invited to solve as many challenges as possible, in a capture-the-flag like competition. Every step, the highest-scoring teams make it to the next step. The winners of the finals get (among other prizes) a trip to DEFCON in Las Vegas. In 2022, my team "tetramonohedrons" won and got to take home the victory.
+    description: 
+      The Cybersecurity Challenge Belgium is a national cybersecurity competition for students where teams of 4 are pitched against each other.
+      Students over the age of 18 are invited to solve as many challenges as possible, in a capture-the-flag like competition. 
+      Every round, the highest-scoring teams make it to the next phase. The finals contain a business phase where you solve real cases in front of notable cybersecurity companies.
+      The winners of the finals get (among other prizes) a trip to DEFCON in Las Vegas. 
+      In 2022, my team "tetramonohedrons" won and got to take home the victory.
 ---
 SeeVee
