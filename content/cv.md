@@ -2,7 +2,11 @@
 title: Maxime Bloch - CV
 resource: "#me"
 name: Maxime Bloch
-description: Motivated to learn, eager to discover. I see work when it needs to be done and will proactively try to improve the status quo.
+description: Motivated to learn, eager to discover. 
+  I see work when it needs to be done and will proactively try to improve the status quo.
+  Working in team and taking responsibility is a second nature given my years of volunteering experience.
+  I have know-how in plenty of fields of computer science due to the diversity of my engagements in the last years.
+  My current expertise can be found in web development, infrastructure and cloud; but my curiosity will only make this list grow.
 links:
   - uri: tel:+32-499-32-00-71
     text: +32 499 32 00 71
@@ -41,7 +45,7 @@ education:
 work:
   - name: Prior-IT
     uri: http://prior-it.be
-    function: Fullstack webdeveloper
+    function: Fullstack web developer
     description: Started as app developer in my first bachelor. 
       Pivoted to web development fairly quickly and took over the role as main fullstack developer for the promising EVapp application. 
       A critical piece of software integrating with emergency services to make sure that volunteering medical professionals are able to help citizens on the street with a medical emergency.
@@ -58,7 +62,7 @@ work:
   - name: UGent
     uri: http://dsa.ugent.be
     function: Teamlead-IT
-    description: Started as webdevelopper. 
+    description: Started as web developper. 
       Quickly transitioned to teamlead of a team of 5-7 student developers. 
       Main work is on the innovative digitization of the DSA (Dienst Studentenactiviteiten). 
       Building a system that integrates with multiple services of the UGent and as a result providing a powerful interface for student organizations to manage their finances, activities, reservations.
@@ -74,6 +78,15 @@ volunteering:
       The union revolves around showing people the cool, interesting, and sometimes simply weird fields in computer science in a friendly environment. 
       In the clubroom (the basement of the S9 building) we also provide a space where people can work on projects and meet others with similar interests.
     started: 2019
+    ended: 2022
+  - name: Student Kick-Off
+    uri: https://studentkickoff.be/
+    function: Coördinator Development
+    description: Responsible for the development and maintenance of the inhouse applications.
+      Work together with a wide variety of teams to organize a huge festival solely by students for students.
+      Development focusses on a complex ticketting application managing backstage, vip and artist access.
+      Keeps track of volunteer shifts and expensive material usage.
+    started: 2020
     ended: 2022
 projects: []
 programminglanguages:
