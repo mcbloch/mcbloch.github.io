@@ -2,6 +2,7 @@
 title: Maxime Bloch - CV
 resource: "#me"
 name: Maxime Bloch
+description: Motivated to learn, eager to discover. I see work when it needs to be done and will proactively try to improve the status quo.
 links:
   - uri: tel:+32-499-32-00-71
     text: +32 499 32 00 71
@@ -22,6 +23,7 @@ education:
   - school: Howest
     field: Digital arts and Entertainment - Game Development
     started: 2021
+    ended: 2022
     uri: http://howest.be
     type: bachelor
   - school: Ghent University
@@ -39,19 +41,24 @@ education:
 work:
   - name: Prior-IT
     uri: http://prior-it.be
-    function: Fullstack webdeveloper, System administrator / devops guy, cloud engineer
-    description: Started as app developer in my first bachelor. Pivoted to web development fairly quickly and took over the role as main fullstack developer for the promising EVapp application. System administration.
+    function: Fullstack webdeveloper
+    description: Started as app developer in my first bachelor. Pivoted to web development fairly quickly and took over the role as main fullstack developer for the promising EVapp application.
+    started: 2016
+  - name: Prior-IT
+    uri: http://prior-it.be
+    function: System administrator, cloud/devops engineer
+    description: Maintain and expand the current cloud infrastructure to support a variety of projects and applications. Analyze and develop new architectures for multiple web-focused bussiness cases. Create and deploy workflows for application recoverability, performance monitoring and general security practices.
     started: 2017
   - name: UGent
     uri: http://dsa.ugent.be
     function: Teamlead-IT
-    description: Started as webdevelopper. Quickly transitioned to teamlead of a team of 5-7 student developpers. Main work is on the innovative digitalisation of the DSA (Dienst Studentenactiviteiten). Building a system that integrates with multiple services of the UGent and as a result providing a powerfull interface for student organisations to manage their finances, activities, reservations.
+    description: Started as webdevelopper. Quickly transitioned to teamlead of a team of 5-7 student developers. Main work is on the innovative digitization of the DSA (Dienst Studentenactiviteiten). Building a system that integrates with multiple services of the UGent and as a result providing a powerful interface for student organizations to manage their finances, activities, reservations.
     started: 2019
 volunteering:
   - name: Zeus WPI
     uri: https://zeus.ugent.be
     function: Project lead, President
-    description: Was project lead, president and assisting board member each for 1 year of the stutend union Zeus WPI, who organize free events for people interested in computer science, especially students of Ghent University. The union revolves around showing people the cool, interesting and sometimes simply weird fields in computer science in a friendly environment. In the club room (the basement of the S9 building) we also provide a space where people can work on projects and meet people with similar interests.
+    description: Was project lead, president and assisting board member each for 1 year of the student union Zeus WPI, who organize free events for people interested in computer science, especially students of Ghent University. The union revolves around showing people the cool, interesting and sometimes simply weird fields in computer science in a friendly environment. In the club room (the basement of the S9 building) we also provide a space where people can work on projects and meet people with similar interests.
     started: 2019
     ended: 2022
 projects: []
@@ -62,11 +69,12 @@ programminglanguages:
       - Java
       - Elixir
       - C/C++
+      - Ruby
   - quality: Proficient
     languages:
-      - Typescript
       - SQL
-      - Ruby
+      - Java-/Typescript
+      - Clojure
       - Bash
   - quality: Familiar
     languages:
@@ -76,6 +84,25 @@ programminglanguages:
       - Haskell
       - Rust
       - LaTeX
+tools:
+  - group: Ops
+    names: 
+    - Terraform
+    - AWS
+    - Ansible
+    - Docker/Containers
+  - group: Webdev
+    names: 
+    - Phoenix
+    - RoR
+    - Flask
+    - Django
+  - group: Appdev
+    names:
+    - Native Android
+  - group: Others
+    names:
+    - Godot
 languages:
   - language: Dutch
     quality: Native Language
