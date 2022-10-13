@@ -14,9 +14,9 @@ links:
   - uri: mailto:cv@mcbloch.dev
     text: cv@mcbloch.dev
     type: email
-  - uri: https://me.mcbloch.dev
-    text: me.mcbloch.dev
-    type: homepage
+  #- uri: https://me.mcbloch.dev
+  #  text: me.mcbloch.dev
+  #  type: homepage
   - uri: https://github.com/mcbloch
     text: mcbloch
     type: github
@@ -76,7 +76,7 @@ work:
 volunteering:
   - name: Zeus WPI
     uri: https://zeus.ugent.be
-    function: Project lead, President
+    function: President, Project lead
     description: 
       Was board member for 3 years of the student union Zeus WPI. 
       Started out as project lead in my first year. Continued my participation as president during a tough year due to the pandemic.
@@ -89,9 +89,9 @@ volunteering:
     uri: https://studentkickoff.be/
     function: Coördinator Development
     description: Responsible for the development and maintenance of the inhouse applications.
-      Work together with a wide variety of teams to organize a huge festival solely by students for students.
+      Working together with a wide variety of teams to organize a huge festival solely by students for students.
       Development focusses on a complex ticketting application managing backstage, vip and artist access.
-      Keeps track of volunteer shifts and expensive material usage.
+      With added modules to keep track of volunteer shifts and (expensive) material usage.
     started: 2020
     ended: 2022
 projects: []
@@ -146,10 +146,9 @@ languages:
 achievements:
   - name: Winner Cybersecurity Challenge Belgium (CSCBE)
     description: 
-      The Cybersecurity Challenge Belgium is a national cybersecurity competition for students where teams of 4 are pitched against each other.
-      Students over the age of 18 are invited to solve as many challenges as possible, in a capture-the-flag like competition. 
-      Every round, the highest-scoring teams make it to the next phase. The finals contain a business phase where you solve real cases in front of notable cybersecurity companies.
-      The winners of the finals get (among other prizes) a trip to DEFCON in Las Vegas. 
+      The Cybersecurity Challenge Belgium is a competition where teams of 4 students between ages 18 and 25 are pitched against each other to solve as many challenges as possible. 
+      The finals contain a business round where you solve real cases in front of notable cybersecurity companies.
+      The first team wins (among other prizes) a trip to DEFCON in Las Vegas. 
       In 2022, my team "tetramonohedrons" won and got to take home the victory.
 ---
 SeeVee
