@@ -1,5 +1,5 @@
 <header id="about-me">
-    <img id="profile-picture" src="img/profile.png" property="schema:image foaf:img">
+    <img id="profile-picture" src="img/profile2.jpg" property="schema:image foaf:img">
     <div id="name-contact">
         <h1 property="schema:name foaf:name"><%= @item[:name] %></h1>
         <div class="contact-items">
@@ -46,15 +46,6 @@
             </ul>
         <!--</section>-->
         <!--<section id="achievements" class="half-block">-->
-            <h2>Achievements</h2>
-            <% @item[:achievements].each do |achievement| %>
-                <div rel="schema:hasCredential" typeof="schema:EducationalOccupationalCredential">
-                    <h3 property="schema:name"><%= achievement[:name] %></h3>
-                    <p property="schema:description">
-                        <%= achievement[:description] %>
-                    </p>
-                </div>
-            <% end %>
         </section>
         <section id="skills" class="half-block">
             <h2>Skills</h2>
@@ -153,6 +144,15 @@
     <!--</section>-->
     <!--<section id="page2" class="page">-->
         <section id="volunteer-work" class="half-block">
+            <h2>Achievements</h2>
+            <% @item[:achievements].each do |achievement| %>
+                <div rel="schema:hasCredential" typeof="schema:EducationalOccupationalCredential">
+                    <h3 property="schema:name"><%= achievement[:name] %></h3>
+                    <p property="schema:description">
+                        <%= achievement[:description] %>
+                    </p>
+                </div>
+            <% end %>
             <h2>Volunteer Work</h2>
             <% @item[:volunteering].each do |org| %>
                 <div rel="cv:hasWorkHistory" typeof="cv:WorkHistory">
