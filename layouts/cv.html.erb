@@ -44,8 +44,18 @@
                 </li>
                 <% end %>
             </ul>
+        <!--</section>-->
+        <!--<section id="achievements" class="half-block">-->
+            <h2>Achievements</h2>
+            <% @item[:achievements].each do |achievement| %>
+                <div rel="schema:hasCredential" typeof="schema:EducationalOccupationalCredential">
+                    <h3 property="schema:name"><%= achievement[:name] %></h3>
+                    <p property="schema:description">
+                        <%= achievement[:description] %>
+                    </p>
+                </div>
+            <% end %>
         </section>
-
         <section id="skills" class="half-block">
             <h2>Skills</h2>
             <h3>Programming Languages</h3>
@@ -140,8 +150,8 @@
             <% end %>
         </section>
         <% end %>
-    </section>
-    <section id="page2" class="page">
+    <!--</section>-->
+    <!--<section id="page2" class="page">-->
         <section id="volunteer-work" class="half-block">
             <h2>Volunteer Work</h2>
             <% @item[:volunteering].each do |org| %>
@@ -160,18 +170,6 @@
                     </h3>
                     <p property="cv:jobDescription">
                         <%= org[:description] %>
-                    </p>
-                </div>
-            <% end %>
-        </section>
-
-        <section id="achievements" class="half-block">
-            <h2>Achievements</h2>
-            <% @item[:achievements].each do |achievement| %>
-                <div rel="schema:hasCredential" typeof="schema:EducationalOccupationalCredential">
-                    <h3 property="schema:name"><%= achievement[:name] %></h3>
-                    <p property="schema:description">
-                        <%= achievement[:description] %>
                     </p>
                 </div>
             <% end %>
