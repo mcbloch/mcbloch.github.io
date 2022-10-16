@@ -8,6 +8,8 @@ end
 
 def contact_point link
   case link[:type]
+  when "location"
+    _contact_point link, "fa-solid fa-location-dot", "schema:location foaf:based_near"
   when "phone"
     _contact_point link, "fa-solid fa-phone", "schema:telephone foaf:phone"
   when "email"

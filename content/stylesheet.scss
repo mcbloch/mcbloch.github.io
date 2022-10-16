@@ -1,18 +1,14 @@
 @import "stylesheets/fontawesome.css";
-
 $debug: false;
 $about-height: 150px;
-
-
 // ----- GENERAL -----
-
 @page {
     //      top right bottom left
     margin: 1cm 1.7cm 1cm 1.7cm; // margin for each piece of paper        
 }
-    
+
 @page :first {
-  margin-top: 6cm; // top margin for first page of paper
+    margin-top: 6cm; // top margin for first page of paper
 }
 
 body {
@@ -24,13 +20,36 @@ body {
         max-width: 800px;
         margin: 0 auto;
     }
-    font: 11pt/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 11pt/1.4 "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
 }
 
 h1 {
     width: fit-content;
     margin: auto;
+    letter-spacing: 1px;
     font-size: 24pt;
+    padding-bottom: 8px;
+    border-bottom: 3px #552492 dotted;
+    margin-bottom: 10px;
+}
+
+h2 {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 14pt;
+    padding-bottom: 5px;
+    border-bottom: 3px #552492 dotted;
+}
+
+h3 {
+    font-size: 12pt;
+    .dates {
+        font-weight: 400;
+        white-space: nowrap
+    }
 }
 
 a {
@@ -42,7 +61,14 @@ a {
     }
 }
 
-p, li {
+ul {
+    // list-style-type: none;
+    // list-style-position: inside;
+    list-style-type: circle;
+    padding-left: 14px;
+}
+
+p {
     text-align: justify;
 }
 
@@ -51,17 +77,24 @@ p, li {
 }
 
 .half-block {
-    @if $debug == true {
+    @if $debug==true {
         border: 1px solid black;
     }
     width: 48%;
 }
 
 .full-block {
-    @if $debug == true {
+    @if $debug==true {
         border: 1px solid black;
     }
     width: 100%;
+}
+
+.quarter-block {
+    @if $debug==true {
+        border: 1px solid black;
+    }
+    width: 23%;
 }
 
 @media print {
@@ -98,7 +131,6 @@ p, li {
 }
 
 // ----- ABOUT ME -----
-
 #profile-picture {
     height: $about-height;
     float: left;
@@ -107,12 +139,12 @@ p, li {
 #about-me {
     padding: 1em;
     height: $about-height;
-    border-bottom: dotted lightblue;
+    // border-bottom: dotted lightblue;
 }
 
 #name-contact {
     padding-left: $about-height;
-    margin-top: 1em;
+    margin-top: 3em;
 }
 
 .contact-items {
@@ -120,27 +152,22 @@ p, li {
     flex-wrap: wrap;
     justify-content: center;
     font-size: 12pt;
-
-    > * {
+    >* {
         margin: 5px;
     }
 }
 
 // ----- EDUCATION -----
-
 #education-timeline {
     border-left: 1px solid black;
     padding-left: 10px;
     margin-left: 50px;
-
     li {
         display: flex;
         flex-direction: column;
-
         &::marker {
             content: "";
         }
-
         .education-school {
             font-size: 16pt;
         }
@@ -154,7 +181,6 @@ p, li {
 }
 
 // ----- SKILLS -----
-
 #skills {
     ul {
         padding-left: 100px;
@@ -168,7 +194,6 @@ p, li {
 }
 
 // ----- PROJECTS -----
-
 #projects {
     #project-list {
         display: flex;
@@ -178,7 +203,6 @@ p, li {
             border: 1px solid lightgray;
             border-radius: 7px;
             padding: 1em;
-
             // Print mode does wierd things with wrapping...
             // Especially chromium
             @media print {
@@ -189,12 +213,10 @@ p, li {
                 width: 46%;
                 margin-top: 0.2em;
             }
-
             h3 {
                 margin: 0;
                 margin-bottom: 0.5em;
             }
-
             .project-language {
                 font-size: 7pt;
                 border: 1px solid lightgray;
