@@ -112,7 +112,9 @@
       <h2>Achievements</h2>
       <% @item[:achievements].each do |achievement| %>
         <div rel="schema:hasCredential" typeof="schema:EducationalOccupationalCredential">
-          <h3 property="schema:name"><%= achievement[:name] %></h3>
+          <h3 property="schema:name"><%= achievement[:name] %>
+            <p class="subtitle"><%= achievement[:date] %></p>
+          </h3>
           <p property="schema:description">
             <%= achievement[:description] %>
           </p>

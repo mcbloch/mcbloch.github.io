@@ -152,11 +152,14 @@ languages:
   - language: French
     quality: Basics
 achievements:
-  - name: Winner Cybersecurity Challenge Belgium (CSCBE)
+  - name: 1ˢᵗ place CSCBE Belgian National Cybersec. Competition
+    date: Mar. 2022
     description: 
-      The CSCBE is a national competition where teams of 4 students between ages 18 and 25 are pitched against each other to solve as many challenges as possible. 
-      The finals contain a business round where you solve real cases in front of notable cybersecurity companies.
-      The first team wins (among other prizes) a trip to DEFCON in Las Vegas. 
-      In 2022, my team "tetramonohedrons" won and got to take home the victory.
+      A national competition where teams of 4 students between ages 18 and 25 are pitched against each other to solve as many challenges as possible. 
+      The finals contain a business round where you solve real cases in front of notable cybersecurity companies. Participated in the team "tetramonohedrons".
+  - name: 21ˢᵗ place ECSC European Cybersec. Competition
+    date: Sep. 2022
+    description: 
+      A competition where every European country sends 10 participants until the ages of 25 to gather as many flags as possible in a combined Jeopardy and Attack-Defense CTF.
 ---
 SeeVee
