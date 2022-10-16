@@ -67,8 +67,6 @@
         <% end %>
       </ul>
     </section>
-    <!--</section>-->
-    <!--<section id="page2" class="page">-->
     <section id="skills" class="half-block">
       <h2>Skills</h2>
       <h3>Programming Languages</h3>
@@ -77,7 +75,10 @@
           <li marker="<%= quality[:quality] %>" class="listify">
             <%# This is an ugly mess to remove whitespaces %>
             <%- quality[:languages].each do |language| -%>
-              <span rel="cv:hasSkill" typeof="cv:Skill"><span property="cv:skillName"><%= language %></span><span hidden property="cv:skillLevel"><%= quality[:quality] %></span></span>
+              <span rel="cv:hasSkill" typeof="cv:Skill">
+                <span property="cv:skillName"><%= language %></span>
+                <span hidden property="cv:skillLevel"><%= quality[:quality] %></span>
+              </span>
             <%- end -%>
           </li>
         <% end %>
