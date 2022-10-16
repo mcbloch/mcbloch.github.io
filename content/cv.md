@@ -161,5 +161,7 @@ achievements:
     date: Sep. 2022
     description: 
       A competition where every European country sends 10 participants until the ages of 25 to gather as many flags as possible in a combined Jeopardy and Attack-Defense CTF.
+personal:
+  Sailing and diving will get me to the water. Curiosity and an esoteric idea will get me at my keyboard. Occasional guitar player and post-rock fan.
 ---
 SeeVee

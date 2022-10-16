@@ -13,97 +13,20 @@
   <section id="page1" class="page">
     <section class="full-block">
       <% if @item[:description] %>
-        <h2>Me</h2>
-        <p>
-          <%= @item[:description] %>
-        </p>
+        <%= render '/_me.html.erb', description: @item[:description] %>
       <% end %>
     </section>
     <% if @item[:work].length > 0 %>
       <section id="work-experience" class="half-block">
-        <h2>Work experience</h2>
-        <% @item[:work].each do |org| %>
-          <div rel="cv:hasWorkHistory" typeof="cv:WorkHistory">
-            <h3>
-              <a href="<%= org[:uri] %>" property="cv:employedIn" typeof="cv:Company">
-                <span property="schema:name foaf:name"><%= org[:name] %></span>
-              </a> - 
-              <span property="cv:jobTitle"><%= org[:function] %></span>
-              <span class="dates">
-                (<span property="cv:startDate"><%= org[:started] %></span> -
-                <% if org[:ended] %>
-                  <span property="cv:endDate"><%= org[:ended] %></span>)
-                <% else %>
-                  now)
-                <% end %>
-              </span>
-            </h3>
-            <ul property="cv:jobDescription">
-              <% org[:desc_items].each do |item| %>
-                <li class="listify">
-                  <span><%= item %></span>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+        <%= render '/_work.html.erb', work: @item[:work] %>
       </section>
     <% end %>
     <section id="volunteer-work" class="half-block">
-      <h2>Volunteer Work</h2>
-      <% @item[:volunteering].each do |org| %>
-        <div rel="cv:hasWorkHistory" typeof="cv:WorkHistory">
-          <h3>
-            <a href="<%= org[:uri] %>" property="cv:employedIn" typeof="cv:Company">
-              <span property="schema:name foaf:name"><%= org[:name] %></span>
-            </a> - 
-            <span property="cv:jobTitle"><%= org[:function] %></span>
-            <span class="dates">
-              (<span property="cv:startDate"><%= org[:started] %></span> -
-              <% if org[:ended] %>
-                <span property="cv:endDate"><%= org[:ended] %></span>)
-              <% else %>
-                now)
-              <% end %>
-            </span>
-          </h3>
-          <% if org[:description] %>
-            <p property="schema:description">
-              <%= org[:description] %>
-            </p>
-          <% end %>
-          <% if org[:desc_items] %>
-            <ul property="schema:description">
-              <% org[:desc_items].each do |item| %>
-                <li class="listify">
-                  <span><%= item %></span>
-                </li>
-              <% end %>
-            </ul>
-          <% end %>
-        </div>
-      <% end %>
+      <%= "/_volunteering.html.erb", volunteering: @item[:volunteering] %>
     </section>
     <% if @item[:projects].length > 0 %>
       <section id="projects" class="full-block">
-        <h2>Project Highlights</h2>
-        <div id="project-list">
-          <%# TODO: Distinguish between project & source code? %>
-          <% @item[:projects].each do |project| %>
-            <div class="project" rev="schema:creator" property="foaf:currentProject" typeof="schema:SoftwareSourceCode" resource="<%= project[:uri] %>">
-              <h3><a property="schema:codeRepository" href="<%= project[:uri] %>">
-                  <i class="icon fa-brands fa-github"></i>
-                  <span property="schema:name"><%= project[:name] %></span>
-                </a></h3>
-              <div class="project-description" property="schema:description">
-                <%= project[:description] %>
-              </div>
-              <% project[:languages].each do |language| %>
-                <span class="project-language" property="schema:programmingLanguage"><%= language %></span>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
+        <%= "/_projects.html.erb", projects: @item[:projects] %>
       </section>
     <% end %>
   </section>
@@ -180,6 +103,10 @@
           </li>
         <% end %>
       </ul>
+      <h2>Personal</h2>
+      <p>
+        <%= @item[:personal] %>
+      </p>
     </section>
   </section>
 </main>

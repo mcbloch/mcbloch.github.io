@@ -1,0 +1,8 @@
+<span class="period">
+  (<span property="cv:startDate"><%= @started %></span> -
+  <% if @ended %>
+    <span property="cv:endDate"><%= @ended %></span>)
+  <% else %>
+    now)
+  <% end %>
+</span>

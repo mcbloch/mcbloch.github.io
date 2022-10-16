@@ -1,0 +1,18 @@
+<h2>Project Highlights</h2>
+<div id="project-list">
+  <%# TODO: Distinguish between project & source code? %>
+  <% @projects.each do |project| %>
+    <div class="project" rev="schema:creator" property="foaf:currentProject" typeof="schema:SoftwareSourceCode" resource="<%= project[:uri] %>">
+      <h3><a property="schema:codeRepository" href="<%= project[:uri] %>">
+          <i class="icon fa-brands fa-github"></i>
+          <span property="schema:name"><%= project[:name] %></span>
+        </a></h3>
+      <div class="project-description" property="schema:description">
+        <%= project[:description] %>
+      </div>
+      <% project[:languages].each do |language| %>
+        <span class="project-language" property="schema:programmingLanguage"><%= language %></span>
+      <% end %>
+    </div>
+  <% end %>
+</div>
