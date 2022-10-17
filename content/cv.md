@@ -155,7 +155,7 @@ achievements:
     date: Mar. 2022
     description: 
       A national competition where teams of 4 students are pitched against each other to solve as many cybersecurity challenges as possible. 
-      The finals contain a business round where you solve real cases in front of notable cybersecurity companies. 
+      The finals contain a business round where you navigate realistic scenarios for notable cybersecurity companies. 
       In 2022, my team got to take home the victory, with among the prizes a trip to DEFCON in Las Vegas.
   - name: 19ᵗʰ place ECSC European Cybersec. Competition
     date: Sep. 2022
