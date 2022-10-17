@@ -22,11 +22,11 @@
       </section>
     <% end %>
     <section id="volunteer-work" class="half-block">
-      <%= "/_volunteering.html.erb", volunteering: @item[:volunteering] %>
+      <%= render "/_volunteering.html.erb", volunteering: @item[:volunteering] %>
     </section>
     <% if @item[:projects].length > 0 %>
       <section id="projects" class="full-block">
-        <%= "/_projects.html.erb", projects: @item[:projects] %>
+        <%= render "/_projects.html.erb", projects: @item[:projects] %>
       </section>
     <% end %>
   </section>

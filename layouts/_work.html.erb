@@ -8,6 +8,6 @@
       <span property="cv:jobTitle"><%= org[:function] %></span>
       <%= render '/__period.html.erb', started: org[:started], ended: org[:ended] %>
     </h3>
-    <%= render '__desc_items.html.erb', items: org[:desc_items], property: "cv:jobDescription" %>
+    <%= render '/__desc_items.html.erb', items: org[:desc_items], property: "cv:jobDescription" %>
   </div>
 <% end %>

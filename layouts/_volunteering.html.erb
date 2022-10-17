@@ -14,7 +14,7 @@
       </p>
     <% end %>
     <% if org[:desc_items] %>
-      <%= render '__desc_items.html.erb', items: org[:desc_items], property: "schema:description" %>
+      <%= render '/__desc_items.html.erb', items: org[:desc_items], property: "schema:description" %>
     <% end %>
   </div>
 <% end %>
