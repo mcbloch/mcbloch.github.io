@@ -11,7 +11,7 @@ description: Motivated to learn, eager to discover.
   gave me a good understanding how everything works together.
 
   My current expertise can be found in web development, infrastructure and cloud; 
-  and I'm hoping to extend this list in the upcoming years.
+  but I am always looking to learn more.
 links:
   - uri: tel:+32-499-32-00-71
     text: +32 499 32 00 71
