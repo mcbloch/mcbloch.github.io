@@ -102,7 +102,7 @@ volunteering:
     started: 2022
     desc_items:
       - Configuration and setup of network equipment.
-      - Monitoring and troubleshooting for 1000 gamers.
+      - Monitoring and troubleshooting for thousands of gamers.
 projects: []
 programminglanguages:
   - quality: Experienced
@@ -157,11 +157,11 @@ achievements:
     description: 
       A national competition where teams of 4 students between ages 18 and 25 are pitched against each other to solve as many challenges as possible. 
       The finals contain a business round where you solve real cases in front of notable cybersecurity companies. Participated in the team "tetramonohedrons".
-  - name: 21ˢᵗ place ECSC European Cybersec. Competition
+  - name: 19ᵗʰ place ECSC European Cybersec. Competition
     date: Sep. 2022
     description: 
       A competition where every European country sends 10 participants until the ages of 25 to gather as many flags as possible in a combined Jeopardy and Attack-Defense CTF.
-personal:
+hobbies:
   Sailing and diving will get me to the water. Curiosity and an esoteric idea will get me at my keyboard. Occasional guitar player and post-rock fan.
 ---
 SeeVee
