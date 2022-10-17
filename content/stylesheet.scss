@@ -197,6 +197,10 @@ p {
             content: attr(marker) " ";
             font-weight: bold;
         }
+
+        span {
+            font-size: 10pt;
+        }
     }
 }
 

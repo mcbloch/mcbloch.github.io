@@ -7,8 +7,7 @@ description: Motivated to learn, eager to discover.
   Working in a team and taking responsibility is a second nature 
   given my years of volunteering experience.
 
-  Engagement in projects about hardware, networking, security and operating systems
-  gave me a good understanding how everything works together.
+  From various/continuous extra-curicular engagements, I have gained a broad experience in hardware, networking, security, ...
 
   My current expertise can be found in web development, infrastructure and cloud; 
   but I am always looking to learn more.
@@ -55,10 +54,9 @@ work:
     uri: http://prior-it.be
     function: Fullstack web developer
     desc_items:
-      - Started as app developer in my first bachelor. 
-      - Pivoted to web development, took over the role as main 
-        fullstack developer for the <a href="https://evapp.org">EVapp</a> 
-        (Emergency Volunteer Application) project. 
+      - Started as app developer in my first bachelor.
+      - Lead fullstack developer for the <a href="https://evapp.org">EVapp</a> project, 
+        an Emergency Voluntuur Application integrated with various emergency services across Belgium.
     started: 2016
     ended: 2022
   - name: Prior-IT
@@ -74,35 +72,36 @@ work:
     uri: http://dsa.ugent.be
     function: Teamlead-IT
     desc_items: 
-      - Started as web developper. 
-      - Quickly transitioned to teamlead of a team of 5-7 student developers. 
-      - Main work is on the innovative digitization of the DSA (Dienst Studentenactiviteiten),
-        building a system that integrates with multiple services of the UGent.
+      - Teamlead of a team of 5-7 student developers.
+      - Managed the innovative digitization of the DSA (Dienst Studentenactiviteiten).
+      - Coordinated between numerous stakeholders to develop a system integrating with various services of the UGent.
     started: 2019
+    ended: 2022
 volunteering:
   - name: Zeus WPI
     uri: https://zeus.ugent.be
     function: President, Project lead
     desc_items: 
-      - Project lead, President, board member.
-      - Zeus WPI organizes free events for people interested in computer science, especially students of Ghent University. 
-      - The union revolves around showing people the cool, interesting, and sometimes simply weird fields in computer science in a friendly environment.
+      - project lead, president, board member.
+      - Zeus WPI organizes free events for students at Ghent University. 
+      - Coordinated a 8-member board to organise 15+ yearly activities.
+      - Activities organised for sometimes 50+ participants.
     started: 2019
     ended: 2022
   - name: Student Kick-Off
     uri: https://studentkickoff.be/
     function: Coördinator Development
     desc_items:
-      - Responsible for the development and maintenance of the inhouse applications.
-      - Working together with a wide variety of teams to organize a huge festival solely by students for students.
+      - Responsible for the development of the inhouse ticketting system, stock management and shift tracking.
+      - Working together with a wide variety of teams to organize a huge festival that welcomes more then 30.000 students to see 3 stages with in total 24 artists/bands.
     started: 2020
   - name: Frag-O-Matic
     uri: https://www.fom.be/
     function: Network team
-    started: 2022
+    started: 2019
     desc_items:
-      - Configuration and setup of network equipment.
-      - Monitoring and troubleshooting for thousands of gamers.
+      - Setup of network infrastructure for a 1000+ people LAN-party and gaming event.
+      - Configure real-time monitoring to expose and resolve time-sensitive problems.
 projects: []
 programminglanguages:
   - quality: Experienced
@@ -155,12 +154,14 @@ achievements:
   - name: 1ˢᵗ place CSCBE Belgian National Cybersec. Competition
     date: Mar. 2022
     description: 
-      A national competition where teams of 4 students between ages 18 and 25 are pitched against each other to solve as many challenges as possible. 
-      The finals contain a business round where you solve real cases in front of notable cybersecurity companies. Participated in the team "tetramonohedrons".
+      A national competition where teams of 4 students are pitched against each other to solve as many cybersecurity challenges as possible. 
+      The finals contain a business round where you solve real cases in front of notable cybersecurity companies. 
+      In 2022, my team got to take home the victory, with among the prizes a trip to DEFCON in Las Vegas.
   - name: 19ᵗʰ place ECSC European Cybersec. Competition
     date: Sep. 2022
     description: 
-      A competition where every European country sends 10 participants until the ages of 25 to gather as many flags as possible in a combined Jeopardy and Attack-Defense CTF.
+      A competition where every European country sends 10 participants until the ages of 25 
+      to gather as many flags as possible in a combined Jeopardy and Attack-Defense CTF.
 hobbies:
   Sailing and diving will get me to the water. Curiosity and an esoteric idea will get me at my keyboard. Occasional guitar player and post-rock fan.
 ---
