@@ -70,7 +70,7 @@ work:
       - Create and deploy workflows for recoverability, monitoring and security practices.
     started: 2017
     ended: 2022
-  - name: UGent
+  - name: Ghent University
     uri: http://dsa.ugent.be
     function: Teamlead-IT
     desc_items: 

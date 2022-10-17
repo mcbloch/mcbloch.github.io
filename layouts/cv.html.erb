@@ -32,40 +32,8 @@
   </section>
   <section id="page2" class="page">
     <section id="education" class="half-block">
-      <h2>Achievements</h2>
-      <% @item[:achievements].each do |achievement| %>
-        <div rel="schema:hasCredential" typeof="schema:EducationalOccupationalCredential">
-          <h3 property="schema:name"><%= achievement[:name] %>
-            <p class="subtitle"><%= achievement[:date] %></p>
-          </h3>
-          <p property="schema:description">
-            <%= achievement[:description] %>
-          </p>
-        </div>
-      <% end %>
-      <h2>Education</h2>
-      <ul id="education-timeline">
-        <li>
-          <span class="education-year">Now</span>
-        </li>
-        <% @item[:education].each do |education| %>
-          <li property="cv:hasEducation" typeof="cv:Education">
-            <span hidden property="cv:degreeType" href="<%= edu_type education %>">
-              <%= education[:type] %>
-            </span>
-            <a class="education-school" property="cv:studiedIn" href="<%= education[:uri] %>" typeof="cv:EducationalOrg">
-              <span about="<%= education[:uri] %>" property="foaf:name schema:name">
-                <%= education[:school] %>
-              </span>
-            </a>
-            <span class="education-field" property="cv:eduDescription"><%= education[:field] %></span>
-            <span class="education-year" property="cv:eduStartDate"><%= education[:started] %></span>
-            <% if education[:ended] %>
-              <span hidden property="cv:eduGradDate"><%= education[:ended] %></span>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
+      <%= render "/_achievements.html.erb", achievements: @item[:achievements] %>
+      <%= render "/_education.html.erb", education: @item[:education] %>
     </section>
     <section id="skills" class="half-block">
       <h2>Skills</h2>

@@ -6,7 +6,9 @@
         <span property="schema:name foaf:name"><%= org[:name] %></span>
       </a> - 
       <span property="cv:jobTitle"><%= org[:function] %></span>
-      <%= render '/__period.html.erb', started: org[:started], ended: org[:ended] %>
+      <p class="subtitle">
+        <%= render '/__period.html.erb', started: org[:started], ended: org[:ended] %>
+      </p>
     </h3>
     <% if org[:description] %>
       <p property="schema:description">

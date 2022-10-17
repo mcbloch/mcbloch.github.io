@@ -1,0 +1,23 @@
+<h2>Education</h2>
+<ul id="education-timeline">
+  <li>
+    <span class="education-year">Now</span>
+  </li>
+  <% @education.each do |education| %>
+    <li property="cv:hasEducation" typeof="cv:Education">
+      <span hidden property="cv:degreeType" href="<%= edu_type education %>">
+        <%= education[:type] %>
+      </span>
+      <a class="education-school" property="cv:studiedIn" href="<%= education[:uri] %>" typeof="cv:EducationalOrg">
+        <span about="<%= education[:uri] %>" property="foaf:name schema:name">
+          <%= education[:school] %>
+        </span>
+      </a>
+      <span class="education-field" property="cv:eduDescription"><%= education[:field] %></span>
+      <span class="education-year" property="cv:eduStartDate"><%= education[:started] %></span>
+      <% if education[:ended] %>
+        <span hidden property="cv:eduGradDate"><%= education[:ended] %></span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
