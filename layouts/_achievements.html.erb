@@ -1,7 +1,16 @@
 <h2>Achievements</h2>
 <% @achievements.each do |achievement| %>
   <div rel="schema:hasCredential" typeof="schema:EducationalOccupationalCredential">
-    <h3 property="schema:name"><%= achievement[:name] %>
+    <h3 property="schema:name">
+      <% if achievement.key?(:uri) %>
+        <a href="<%= achievement[:uri] %>">
+          <span>
+            <%= achievement[:name] %>
+          </span>
+        </a>
+      <% else %>
+        <%= achievement[:name] %>
+      <% end %>
       <p class="subtitle"><%= achievement[:date] %></p>
     </h3>
     <p property="schema:description">

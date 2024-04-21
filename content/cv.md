@@ -7,9 +7,9 @@ description: Motivated to learn, eager to discover.
   Working in a team and taking responsibility is a second nature 
   given my years of volunteering experience.
 
-  From various/continuous extra-curicular engagements, I have gained a broad experience in hardware, networking, security, ...
+  From various/continuous extra-curricular engagements, I have gained a broad experience in hardware, networking, security, ...
 
-  My current expertise can be found in web development, infrastructure and cloud; 
+  My current expertise can be found in offensive and defensive security, web development, infrastructure and cloud; 
   but I am always looking to learn more.
 links:
   - uri: tel:+32-499-32-00-71
@@ -40,7 +40,7 @@ education:
   - school: Ghent University
     field: Bachelor Computer Science
     started: 2016
-    ended: 2022
+    ended: 2023
     uri: http://ugent.be
     type: bachelor
   #- school: KA Voskenslaan
@@ -50,17 +50,24 @@ education:
   #  uri: https://www.kavoskenslaan.be/
   #  type: highschool
 work:
+  - name: Ordina / Sopra Steria
+    uri: https://ordina.be
+    function: Cybersecurity consultant
+    desc_items:
+    - Offensive and application security in short-term assignments.
+    - Development and implementation of advanced detection systems in a Security Operations Center (SOC) environment.
+    started: 2023
   - name: Prior-IT
-    uri: http://prior-it.be
+    uri: https://www.prior-it.be
     function: Fullstack web developer
     desc_items:
       - Started as app developer in my first bachelor.
       - Lead fullstack developer for the <a href="https://evapp.org">EVapp</a> project, 
-        an Emergency Voluntuur Application integrated with various emergency services across Belgium.
+        an Emergency Volunteer Application integrated with various emergency services across Belgium.
     started: 2016
     ended: 2022
   - name: Prior-IT
-    uri: http://prior-it.be
+    uri: https://www.prior-it.be
     function: System administrator, cloud/devops engineer
     desc_items: 
       - Maintain and expand the cloud infrastructure to support a variety of projects.
@@ -78,6 +85,14 @@ work:
     started: 2019
     ended: 2022
 volunteering:
+  - name: Cyber Security Challenge Belgium
+    uri: https://www.cybersecuritychallenge.be/
+    function: Technical Team Member
+    desc_items:
+      - Manage, create and plan CTF challenges.
+      - Design, create and support CTF infrastructure.
+      - Coordinate and assist during the event.
+    started: 2023
   - name: Zeus WPI
     uri: https://zeus.ugent.be
     function: President, Project lead
@@ -92,7 +107,7 @@ volunteering:
     uri: https://studentkickoff.be/
     function: Coördinator Development
     desc_items:
-      - Responsible for the development of the inhouse ticketting system, stock management and shift tracking.
+      - Responsible for the development of the in-house ticketing system, stock management and shift tracking.
       - Working together with a wide variety of teams to organize a huge festival that welcomes more then 30.000 students to see 3 stages with in total 24 artists/bands.
     started: 2020
   - name: Frag-O-Matic
@@ -131,6 +146,11 @@ tools:
     - AWS
     - Ansible
     - Docker/Containers
+  - group: Cyber
+    names:
+    - Splunk
+    - Burpsuite
+    - Kali Linux
   - group: Webdev
     names: 
     - Phoenix
@@ -151,6 +171,10 @@ languages:
   - language: French
     quality: Basics
 achievements:
+  - name: Certification - Web Application Penetration Tester (eWPT)
+    uri: https://certs.ine.com/a1fa2796-3d78-44d7-8834-90902700550b
+    description: Issued by INE Security.
+    date: Nov. 2023
   - name: 1ˢᵗ place CSCBE Belgian National Cybersec. Competition
     date: Mar. 2022
     description: 
