@@ -9,27 +9,24 @@ description: Motivated to learn, eager to discover.
 
   From various/continuous extra-curricular engagements, I have gained a broad experience in hardware, networking, security, ...
 
-  My current expertise can be found in offensive and defensive security, web development, infrastructure and cloud; 
+  My current expertise can be found in offensive and defensive cybersecurity, web development, infrastructure and cloud; 
   but I am always looking to learn more.
 links:
-  - uri: tel:+32-499-32-00-71
-    text: +32 499 32 00 71
-    type: phone
   - uri: mailto:cv@mcbloch.dev
     text: cv@mcbloch.dev
     type: email
   - uri: https://www.openstreetmap.org/relation/897671
     text: Ghent, Belgium
     type: location
-  #- uri: https://me.mcbloch.dev
-  #  text: me.mcbloch.dev
-  #  type: homepage
-  #- uri: https://github.com/mcbloch
-  #  text: mcbloch
-  #  type: github
-  #- uri: https://www.linkedin.com/in/maxime-bloch-498870149/
-  #  text: Maxime Bloch
-  #  type: linkedin
+  - uri: https://mcbloch.github.io/
+    text: mcbloch.github.io
+    type: homepage
+  - uri: https://github.com/mcbloch
+    text: mcbloch
+    type: github
+  - uri: https://www.linkedin.com/in/maxime-bloch-498870149/
+    text: Maxime Bloch
+    type: linkedin
 education:
   - school: Howest
     field: Digital arts and Entertainment - Game Development
@@ -54,8 +51,8 @@ work:
     uri: https://ordina.be
     function: Cybersecurity consultant
     desc_items:
+    - Development and implementation of advanced detection systems in a Security Operations Center (SOC).
     - Offensive and application security in short-term assignments.
-    - Development and implementation of advanced detection systems in a Security Operations Center (SOC) environment.
     started: 2023
   - name: Prior-IT
     uri: https://www.prior-it.be
@@ -87,11 +84,11 @@ work:
 volunteering:
   - name: Cyber Security Challenge Belgium
     uri: https://www.cybersecuritychallenge.be/
-    function: Technical Team Member
+    function: CTF Technical Team member
     desc_items:
-      - Manage, create and plan CTF challenges.
-      - Design, create and support CTF infrastructure.
-      - Coordinate and assist during the event.
+      - Oversee the management, creation, and planning of the Capture The Flag (CTF) challenges. Create some challenges of my own.
+      - Designing and supporting the underlying CTF infrastructure.
+      - Real-time assistance during the events to facilitate a smooth and successful competition.
     started: 2023
   - name: Zeus WPI
     uri: https://zeus.ugent.be
@@ -105,7 +102,7 @@ volunteering:
     ended: 2022
   - name: Student Kick-Off
     uri: https://studentkickoff.be/
-    function: Coördinator Development
+    function: Coordinator Development
     desc_items:
       - Responsible for the development of the in-house ticketing system, stock management and shift tracking.
       - Working together with a wide variety of teams to organize a huge festival that welcomes more then 30.000 students to see 3 stages with in total 24 artists/bands.
@@ -149,7 +146,7 @@ tools:
   - group: Cyber
     names:
     - Splunk
-    - Burpsuite
+    - Burp Suite
     - Kali Linux
   - group: Webdev
     names: 
@@ -173,7 +170,9 @@ languages:
 achievements:
   - name: Certification - Web Application Penetration Tester (eWPT)
     uri: https://certs.ine.com/a1fa2796-3d78-44d7-8834-90902700550b
-    description: Issued by INE Security.
+    description:
+      A hands-on qualification that demonstrates the practical skills needed in web application security penetration testing. It shows the ability to identify, exploit and report web application vulnerabilities.
+      Issued by INE Security.
     date: Nov. 2023
   - name: 1ˢᵗ place CSCBE Belgian National Cybersec. Competition
     date: Mar. 2022
