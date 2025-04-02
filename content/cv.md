@@ -7,10 +7,10 @@ description: Motivated to learn, eager to discover.
   Working in a team and taking responsibility is a second nature 
   given my years of volunteering experience.
 
-  From various/continuous extra-curricular engagements, I have gained a broad experience in hardware, networking, security, ...
+  From various/continuous engagements, in both professional and personal context, I have gained a broad experience in security, software, hardware, networking, ...
 
   My current expertise can be found in offensive and defensive cybersecurity, web development, infrastructure and cloud; 
-  but I am always looking to learn more.
+  and I am always looking to learn more.
 links:
   - uri: mailto:cv@mcbloch.dev
     text: cv@mcbloch.dev
@@ -47,13 +47,20 @@ education:
   #  uri: https://www.kavoskenslaan.be/
   #  type: highschool
 work:
-  - name: Ordina / Sopra Steria
-    uri: https://ordina.be
+  - name: Sopra Steria
+    uri: https://www.soprasteria.be/
     function: Cybersecurity consultant
     desc_items:
-    - Development and implementation of advanced detection systems in a Security Operations Center (SOC).
-    - Offensive and application security in short-term assignments.
+      - Full-time pentesting assessing a wide range of applications and systems.
+    started: 2024
+  - name: Sopra Steria (formerly Ordina)
+    uri: https://www.soprasteria.be/
+    function: Cybersecurity consultant
+    desc_items:
+      - Development and implementation of advanced detection systems in a Security Operations Center (SOC).
+      - Offensive and application security in short-term assignments.
     started: 2023
+    ended: 2024
   - name: Prior-IT
     uri: https://www.prior-it.be
     function: Fullstack web developer
@@ -86,16 +93,24 @@ volunteering:
     uri: https://www.cybersecuritychallenge.be/
     function: CTF Technical Team member
     desc_items:
-      - Oversee the management, creation, and planning of the Capture The Flag (CTF) challenges. Create some challenges of my own.
-      - Designing and supporting the underlying CTF infrastructure.
+      - Oversee the management, creation, and planning of the Capture The Flag (CTF) challenges. Create additional challenges.
+      - Designing and supporting the underlying CTF infrastructure with a focus on resilience and observability.
       - Real-time assistance during the events to facilitate a smooth and successful competition.
     started: 2023
+  - name: Frag-O-Matic
+    uri: https://www.fom.be/
+    function: Network team
+    started: 2019
+    desc_items:
+      - Setup of network infrastructure for a 1000+ people LAN-party and gaming event.
+      - Configure real-time monitoring to expose and resolve time-sensitive problems.
+      - Adapt and configure network and server infrastructure to support changing needs.
   - name: Zeus WPI
     uri: https://zeus.ugent.be
     function: President, Project lead
     desc_items: 
       - project lead, president, board member.
-      - Zeus WPI organizes free events for students at Ghent University. 
+      - Zeus WPI organizes tech related events for students at Ghent University. 
       - Coordinated a 8-member board to organise 15+ yearly activities.
       - Activities organised for sometimes 50+ participants.
     started: 2019
@@ -105,55 +120,60 @@ volunteering:
     function: Coordinator Development
     desc_items:
       - Responsible for the development of the in-house ticketing system, stock management and shift tracking.
+      - Assist in the setup of a redundant physical and wireless network supporting the finance, security, production, ... teams.
       - Working together with a wide variety of teams to organize a huge festival that welcomes more then 30.000 students to see 3 stages with in total 24 artists/bands.
     started: 2020
-  - name: Frag-O-Matic
-    uri: https://www.fom.be/
-    function: Network team
-    started: 2019
+    ended: 2023
+  - name: 12urenloop
+    uri: https://12urenloop.be/
+    function: IT team
     desc_items:
-      - Setup of network infrastructure for a 1000+ people LAN-party and gaming event.
-      - Configure real-time monitoring to expose and resolve time-sensitive problems.
+      - Assisted in the redesign, creation and rollout of a brand-new runner-tracking system.
+      - The core system consists of low-power BLE batons, a physical network laid-out around the track and a central data collection and analysis stack.
+      - Created a monitoring setup showing any urgent issues at glance.
+    started: 2020
+    ended: 2023
 projects: []
 programminglanguages:
   - quality: Experienced
     languages:
       - Python
-      - Java
+      - JS/TS
       - Elixir
       - C/C++
       - Ruby
   - quality: Proficient
     languages:
       - SQL
-      - JS/TS
+      - Java
       - Clojure
       - Bash
   - quality: Familiar
     languages:
       - Lua
       - Prolog
-      - R
       - Rust
+      - Golang
+      - R
       - LaTeX
 tools:
   - group: Ops
     names: 
-    - Terraform
+    - Terraform/OpenTofu
     - AWS
     - Ansible
-    - Docker/Containers
+    - Proxmox/Containers
   - group: Cyber
     names:
     - Splunk
     - Burp Suite
     - Kali Linux
+    - Wireshark
   - group: Webdev
     names: 
-    - Phoenix
-    - RoR
-    - Flask
-    - Django
+    - Phoenix (Elixir)
+    - RoR (Ruby)
+    - Flask (Python)
   - group: Appdev
     names:
     - Native Android
